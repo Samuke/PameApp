@@ -12,8 +12,6 @@ uses
 type
   THRMFlags = record
     HRValue16bits: boolean;
-    EnergyExpended: boolean;
-    RRInterval: boolean;
   end;
 
   TForm1 = class(TForm)
@@ -27,7 +25,7 @@ type
     Label3: TLabel;
     ScrollBox1: TScrollBox;
     Panel1: TPanel;
-    btnEscribe: TButton;
+    btnLee: TButton;
     TabControl1: TTabControl;
     ConectarTab: TTabItem;
     DashboardTab: TTabItem;
@@ -48,8 +46,7 @@ type
     procedure ServiciosDescubiertosBLE(const Sender: TObject; const AServiceList: TBluetoothGattServiceList);
     procedure lDispositivosItemClick(const Sender: TCustomListBox; const Item: TListBoxItem);
     procedure LeeCaracteristica(const Sender: TObject; const ACharacteristic: TBluetoothGattCharacteristic; AGattStatus: TBluetoothGattStatus);
-    procedure btnEscribeClick(Sender: TObject);
-    procedure OnCharacteristicWriteHandler(const Sender: TObject; const ACharacteristic: TBluetoothGattCharacteristic; AGattStatus: TBluetoothGattStatus);
+    procedure btnLeeClick(Sender: TObject);
     procedure MuestraDatosPulso(Data: TBytes);
     procedure MuestraDatosTemperatura(Data: TBytes);
     procedure MuestraDatosHumedad(Data: TBytes);
@@ -60,10 +57,9 @@ type
   private
     { Private declarations }
     Scanning: Boolean;
-    variable: TBluetoothGattService;
     BLEseleccionado: TBluetoothLEDevice;
     SelecServicioGatt: TBluetoothGattService;
-    MidePulsoCaractGatt: TBluetoothGattCharacteristic;
+    PulsoCaractGatt: TBluetoothGattCharacteristic;
     TempCaractGatt: TBluetoothGattCharacteristic;
     HumyCaractGatt: TBluetoothGattCharacteristic;
     procedure RequestPermissionsResult(Sender: TObject; const APermissions: TClassicStringDynArray; const AGrantResults: TClassicPermissionStatusDynArray);
@@ -72,7 +68,7 @@ type
     procedure DetieneDescubrimientoBLE;
     procedure serviciosycaracteristicas;
     procedure ManageCharacteristicData(const ACharacteristic: TBluetoothGattCharacteristic);
-    procedure WriteToCharacteristic;
+    procedure LeeCaracteristicaOnce;
     function ObtieneBanderas(Data: Byte): THRMFlags;
   public
     { Public declarations }
@@ -83,17 +79,11 @@ const
   servPulso:   TBluetoothUUID = '{0000180D-0000-1000-8000-00805F9B34FB}';//uuid estandarizado
   charPulso:   TBluetoothUUID = '{00002A37-0000-1000-8000-00805F9B34FB}';//uuid estandarizado
 
-  servBateria: TBluetoothUUID = '{0000180F-0000-1000-8000-00805F9B34FB}';//uuid estandarizado
-  charBateria: TBluetoothUUID = '{00002A19-0000-1000-8000-00805F9B34FB}';//uuid estandarizado
-
   servAmbiental: TBluetoothUUID = '{0000181A-0000-1000-8000-00805F9B34FB}';//uuid estandarizado
   charTemp:      TBluetoothUUID = '{00002A1F-0000-1000-8000-00805F9B34FB}';//uuid estandarizado
   charHumy:      TBluetoothUUID = '{00002A6F-0000-1000-8000-00805F9B34FB}';//uuid estandarizado
 
-  VALOR_PULSO_FORMAT_MASK       = $1;
-  ESTADO_CONTACTO_SENSOR_MASK   = $6;
-  ESTADO_ENERGIA_EXPANDIDA_MASK = $8;
-  INTERVALO_RR_MASK             = $10;
+  VALOR_PULSO_FORMAT_MASK = $1;// En binario = 00000001, se utiliza para determinar si el ritmo cardíaco está codificado en un formato de 8 o 16 bits
 var
   Form1: TForm1;
 
@@ -103,98 +93,93 @@ uses
   FMX.DialogService;
 
 {$R *.fmx}
-// Inicia ventana
-procedure TForm1.FormShow(Sender: TObject);
-begin
-  Memo1.Lines.Add('FormShow');
-  Scanning := False;
-//  if Hexa = 0 then Hexa := $01;
-end;
 
-function BytesToString(const B: TBytes): string;
+function BytesToString(const Data: TBytes): string;
 /// Función para convertir bytes a string.
 var
   i: Integer;
 begin
-  if Length(B) > 0 then
+  if Length(Data) > 0 then
   begin
-    Result := Format('%0.2X', [B[0]]);
-    for i := 1 to High(B) do
-      Result := Result + Format(' %0.2X', [B[i]]);
+    Result := Format('%0.2X', [Data[0]]);
+    for i := 1 to High(Data) do
+      Result := Result + Format(' %0.2X', [Data[i]]);
   end
   else
     Result := '';
 end;
 
 function TForm1.ObtieneBanderas(Data: Byte): THRMFlags;
-/// Obtiene los datos en bits del dispositivo.
+/// Verifica el formato del ritmo cardíaco.
 begin
+  // Compara el valor de 'Data' con la máscara. Si es 1, el valor está en 16 bits; si es 0, está en 8 bits
   Result.HRValue16bits := (Data and VALOR_PULSO_FORMAT_MASK) = 1;
-//  Result.EnergyExpended := ((Data and ESTADO_ENERGIA_EXPANDIDA_MASK) shr 3) = 1;
-//  Result.RRInterval := ((Data and INTERVALO_RR_MASK) shr 4) = 1;
+end;
+
+procedure TForm1.FormShow(Sender: TObject);
+/// Inicia ventana.
+begin
+  Memo1.Lines.Add('FormShow');
+  Scanning := False;
 end;
 // =============================================================================
-// Boton que busca dispositivos
 procedure TForm1.btnEscaneaClick(Sender: TObject);
+/// Botón que busca dispositivos Bluetooth LE disponibles.
 var
   Permissions: TArray<string>;
 begin
   Memo1.Lines.Add('btnEscaneaClick');
+  // Revisa la versión del dispositivo
   if TOSVersion.Check(12) then
+    // si es (Android) 12: agrega a la solicitud los permisos de escaneo y conexión bluetooth, aparte de ubicación
     Permissions := [LOCATION_PERMISSION, BLUETOOTH_SCAN_PERMISSION, BLUETOOTH_CONNECT_PERMISSION]
   else
+    // si fuere otra versión, (Android) 6, (Android/Windows) 10, solo solicita permiso de ubicación
     Permissions := [LOCATION_PERMISSION];
 
-  PermissionsService.RequestPermissions(Permissions, RequestPermissionsResult, DisplayRationale);
+  PermissionsService.RequestPermissions(Permissions, RequestPermissionsResult, DisplayRationale);// Solicita permisos
 end;
 
-procedure TForm1.btnEscribeClick(Sender: TObject);
-begin
-  Memo1.Lines.Add('btnEscribeClick');
-  WriteToCharacteristic;
-end;
-
-procedure TForm1.btnDetieneEscaneoClick(Sender: TObject);
-begin
-  Memo1.Lines.Add('btnDetieneEscaneoClick');
-  DetieneDescubrimientoBLE
-end;
-// Requiere permisos
 procedure TForm1.RequestPermissionsResult(Sender: TObject; const APermissions: TClassicStringDynArray; const AGrantResults: TClassicPermissionStatusDynArray);
+/// Verifica que los permisos hayan sido concedidos.
 begin
   Memo1.Lines.Add('RequestPermissionsResult');
+  // Verifica la cantidad de solicitudes pedidas y si éstas han sido concedidas
   if ((Length(AGrantResults) = 3) and (AGrantResults[0] = TPermissionStatus.Granted)
                                   and (AGrantResults[1] = TPermissionStatus.Granted)
                                   and (AGrantResults[2] = TPermissionStatus.Granted)) or
      ((Length(AGrantResults) = 1) and (AGrantResults[0] = TPermissionStatus.Granted)) then
-    IniciaDescubrimientoBLE
+    IniciaDescubrimientoBLE// procede a escanear dispositivos
   else
     TDialogService.ShowMessage('No se puede comenzar el escaneo BLE ya que los permisos no han sido concedidos');
 end;
 
 procedure TForm1.DisplayRationale(Sender: TObject; const APermissions: TClassicStringDynArray; const APostRationaleProc: TProc);
+/// Se activa como mensaje al usuario en caso de que algún permiso no se haya concedido, con su debida explicación.
 begin
   Memo1.Lines.Add('DisplayRationale');
   TDialogService.ShowMessage('Se necesitan permisos para descubrir dispositivos BLE',
     procedure(const AResult: TModalResult)
     begin
-      APostRationaleProc;
+      APostRationaleProc;// función que vuelve a verificar los permisos
     end)
 end;
-// Activa busqueda de dispositivos
+
 procedure TForm1.IniciaDescubrimientoBLE;
+/// Activa búsqueda de dispositivos.
 begin
   Memo1.Lines.Add('IniciaDescubrimientoBLE');
   if not Scanning then
   begin
-    lDispositivos.Clear;
-    BluetoothLE1.Enabled := True;
-    BluetoothLE1.DiscoverDevices(ScanningTime);
+    lDispositivos.Clear;// Limpia la lista de dispositivos
+    BluetoothLE1.Enabled := True;//Habilita la función bluetooth
+    BluetoothLE1.DiscoverDevices(ScanningTime);// Busca por dispositivos en el área
     Scanning := True;
   end;
 end;
 
 procedure TForm1.DescubreDispositivoBLE(const Sender: TObject; const ADevice: TBluetoothLEDevice; Rssi: Integer; const ScanResponse: TScanResponse);
+/// Se activa al encontrar un dispositivo BLE.
 var
   PrevDiscoveredDevicesCount: Integer;
   DiscoveredDevicesCount: Integer;
@@ -219,22 +204,29 @@ begin
     else
       lDispositivos.Items[DiscoveredDeviceIndex] := DiscoveredDeviceName;
   end;
-//  variable := nil;
-//  variable := BluetoothLE1.GetService(ADevice, SuscribeSeis);
 end;
 
 procedure TForm1.CierraDescubreDispositivoBLE(const Sender: TObject; const ADeviceList: TBluetoothLEDeviceList);
+/// Se activa una vez terminado de escanear dispositivos.
 begin
   Memo1.Lines.Add('CierraDescubreDispositivoBLE');
   Scanning := False;
   lDispositivos.Items.Add('======== Fin escaneo ========');
 end;
 
+procedure TForm1.btnDetieneEscaneoClick(Sender: TObject);
+/// Se activa al clickear un dispositivo en la lista de dispositivos encontrados.
+begin
+  Memo1.Lines.Add('btnDetieneEscaneoClick');
+  DetieneDescubrimientoBLE;
+end;
+
 procedure TForm1.lDispositivosItemClick(const Sender: TCustomListBox; const Item: TListBoxItem);
+/// Se activa al clickear un dispositivo de la lista de dispositivos encontrados.
 begin
   if Scanning then
-    btnDetieneEscaneoClick(Sender);
-  lServicios.Lines.Clear;
+    btnDetieneEscaneoClick(Sender);// función que cancela el escaneo prematuramente
+  lServicios.Lines.Clear;// limpia la lista de servicios encontrados
   lServicios.Lines.Add('Descubriendo servicios...');
   TThread.CreateAnonymousThread(
     procedure
@@ -245,11 +237,12 @@ begin
           begin
             lServicios.Lines.Add('Servicio para descubrir no permitido!');
           end);
-    end).Start;
+    end).Start;// Activa 'ServiciosDescubiertosBLE' si es que está permitido
     BLEseleccionado := BluetoothLE1.DiscoveredDevices[lDispositivos.ItemIndex];// Guarda el dispositivo seleccionado en una variable global
 end;
 
 procedure TForm1.ServiciosDescubiertosBLE(const Sender: TObject; const AServiceList: TBluetoothGattServiceList);
+/// Lista los servicios y características del dispositivo BLE seleccionado.
 var
   ServiceIndex: Integer;
   Service: TBluetoothGattService;
@@ -271,24 +264,16 @@ begin
         if TBluetoothProperty.Notify in Characteristic.Properties then lServicios.Lines.Add('    -  -  -  Notify');
         if TBluetoothProperty.Read in Characteristic.Properties then lServicios.Lines.Add('    -  -  -  Read');
         if TBluetoothProperty.Write in Characteristic.Properties then lServicios.Lines.Add('    -  -  -  Write');
-        {if Characteristic.UUID = unknownGAPc then
-          begin
-            BLEseleccionado.ReadCharacteristic(Characteristic);// lee la caracteristica, activa 'LeeCaracteristica'.
-            Break;//sale una vez se ha encontrado y leido la caracteristica
-          end;
-        if Characteristic.UUID = CharacteSeis then
-          BLEseleccionado.SetCharacteristicNotification(Characteristic, True);
-          Memo1.Lines.Add('Subscribed to notifications for characteristic: ' + Characteristic.UUID.ToString);
-          Break;   }
       end;
     end;
   end
   else
     lServicios.Lines.Add('Acceso no permitido o servicios no disponibles');
-  serviciosycaracteristicas;
+  serviciosycaracteristicas;// Inicia la lectura de los valores de las características
 end;
 
 procedure TForm1.DetieneDescubrimientoBLE;
+/// Cancela el descubrimiento de dispositivos BLE prematuramente.
 begin
   Memo1.Lines.Add('DetieneDescubrimientoBLE');
   Scanning := False;
@@ -296,15 +281,14 @@ begin
 end;
 // =============================================================================
 procedure TForm1.LeeCaracteristica(const Sender: TObject; const ACharacteristic: TBluetoothGattCharacteristic; AGattStatus: TBluetoothGattStatus);
-var
-  LSValue: string;
+/// Se activa con un 'SuscribeToCharacteristic' o 'ReadCharacteristic'.
 begin
   Memo1.Lines.Add('LeeCaracteristica');
   if AGattStatus = TBluetoothGattStatus.Success then
   begin
-    Memo1.Lines.Add('            Alerta recibida de: ' + ACharacteristic.UUIDName + ' - ' + ACharacteristic.UUID.ToString);
-    Memo1.Lines.Add('            Valor característica: ' + BytesToString(ACharacteristic.Value));
-    ManageCharacteristicData(ACharacteristic);
+    Memo1.Lines.Add('            Notificación recibida de: ' + ACharacteristic.UUIDName + ' - ' + ACharacteristic.UUID.ToString);
+    Memo1.Lines.Add('            Valor de característica: ' + BytesToString(ACharacteristic.Value));
+    ManageCharacteristicData(ACharacteristic);// prepara la función que muestras los datos en el dashboard
   end
   else
   begin
@@ -313,6 +297,7 @@ begin
 end;
 
 procedure TForm1.serviciosycaracteristicas;
+/// Función que activa la lectura de las características periódicamente.
 begin
   Memo1.Lines.Add('serviciosycaracteristicas');
   SelecServicioGatt := nil;
@@ -322,35 +307,30 @@ begin
   SelecServicioGatt := BluetoothLE1.GetService(BLEseleccionado, servAmbiental);
   if SelecServicioGatt <> nil then
   begin
-    Memo1.Lines.Add('    -Servicio "Environmental Sensing" encontrado-');
+    Memo1.Lines.Add('    -Servicio '+ servAmbiental.ToString +' encontrado-');
     TempCaractGatt := BluetoothLE1.GetCharacteristic(SelecServicioGatt, charTemp);
     HumyCaractGatt := BluetoothLE1.GetCharacteristic(SelecServicioGatt, charHumy);
     if TempCaractGatt <> nil then
     begin
-      Memo1.Lines.Add('        (Lee la caracteristica)');
-//      BLEseleccionado.ReadCharacteristic(TempCaractGatt);// Lee la caracteristica una sola vez, activa 'LeeCaracteristica'
-//      Memo1.Lines.Add('        (Se suscribe?)');
       BluetoothLE1.SubscribeToCharacteristic(BLEseleccionado, TempCaractGatt);// Activa 'LeeCaracteristica' cada vez que se detecta un cambio de valor
-//      Memo1.Lines.Add('        (Pasó el suscribe)');
+      Memo1.Lines.Add('        Suscrito a característica '+ TempCaractGatt.UUIDName +' - '+ TempCaractGatt.UUID.ToString);
     end
     else
-      Memo1.Lines.Add('        (Caracteristica no encontrada :(');
+      Memo1.Lines.Add('        (Caracteristica no encontrada');
     if HumyCaractGatt <> nil then
     begin
-      Memo1.Lines.Add('        (Lee la caracteristica)');
-//      BLEseleccionado.ReadCharacteristic(HumyCaractGatt);// Lee la caracteristica una sola vez, activa 'LeeCaracteristica'
-//      Memo1.Lines.Add('        (Se suscribe?)');
       BluetoothLE1.SubscribeToCharacteristic(BLEseleccionado, HumyCaractGatt);// Activa 'LeeCaracteristica' cada vez que se detecta un cambio de valor
-//      Memo1.Lines.Add('        (Pasó el suscribe)');
+      Memo1.Lines.Add('        Suscrito a característica '+ HumyCaractGatt.UUIDName +' - '+ HumyCaractGatt.UUID.ToString);
     end
     else
-      Memo1.Lines.Add('        (Caracteristica no encontrada :(');
+      Memo1.Lines.Add('        Caracteristica no encontrada');
   end
   else
     Memo1.Lines.Add('    x Servicio '+ servAmbiental.ToString + ' no encontrado x');
 end;
 
 procedure TForm1.ManageCharacteristicData(const ACharacteristic: TBluetoothGattCharacteristic);
+/// Función que identifica la característica para mostrarla en pantalla.
 begin
   Memo1.Lines.Add('ManageCharacteristicData');
   if ACharacteristic.UUID = charPulso then begin
@@ -363,72 +343,31 @@ begin
     MuestraDatosHumedad(ACharacteristic.Value);
   end;
 end;
-
-procedure TForm1.WriteToCharacteristic;
-var
-  LCharacteristic: TBluetoothGattCharacteristic;
-  LData: TBytes;
-  Success: Boolean;
-  Hexa: Byte;
+// =============================================================================
+procedure TForm1.btnLeeClick(Sender: TObject);
+/// Botón que lee característica una sola vez
 begin
-  Memo1.Lines.Add('WriteToCharacteristic');
-  if BLEseleccionado <> nil then
-  begin
-    Hexa := $01;// 0x01 en hexadecimal
-//    LCharacteristic := BLEseleccionado.GetService(servAmbiental).GetCharacteristic(EscribeACinco);
-
-    // Verifica que la característica permita escritura
-    if (LCharacteristic <> nil) and (TBluetoothProperty.Write in LCharacteristic.Properties) then
-    begin
-      SetLength(LData, 2);
-      LData[0] := $D5;
-      LData[1] := Hexa;
-
-      LCharacteristic.SetValue(LData);
-
-      Success := BLEseleccionado.WriteCharacteristic(LCharacteristic);// Escribe a la característica
-//      Memo1.Lines.Add('    Success = ' + Success.ToString);
-
-      if Success then
-      begin
-        Memo1.Lines.Add('Escritura de ' + IntToHex(Hexa, 2) + ' exitosa en la característica');
-        Inc(Hexa);// Incrementa Hexa en cada ejecución
-      end
-      else
-      begin
-        ShowMessage('Error al escribir en la característica');
-      end
-    end
-    else
-    begin
-      ShowMessage('La característica no es válida o no se puede escribir');
-    end;
-  end
-  else
-    ShowMessage('Dispositivo no conectado');
+  Memo1.Lines.Add('btnLeeClick');
+  LeeCaracteristicaOnce;
 end;
 
-procedure TForm1.OnCharacteristicWriteHandler(const Sender: TObject; const ACharacteristic: TBluetoothGattCharacteristic; AGattStatus: TBluetoothGattStatus);
+procedure TForm1.LeeCaracteristicaOnce;
+/// Lee características una sola vez
 begin
-  // Verificar si la escritura fue exitosa
-  if AGattStatus = TBluetoothGattStatus.Success then
-  begin
-    Memo1.Lines.Add('Valor escrito exitosamente en la característica: ' + ACharacteristic.UUID.ToString);
-  end
-  else
-  begin
-    ShowMessage('Error al escribir en la característica');
-  end;
+  Memo1.Lines.Add('LeeCaracteristicaONCE');
+  BLEseleccionado.ReadCharacteristic(TempCaractGatt);// Lee la caracteristica, activa 'LeeCaracteristica'
+  BLEseleccionado.ReadCharacteristic(HumyCaractGatt);
 end;
 
 procedure TForm1.MuestraDatosPulso(Data: TBytes);
-// Transforma los datos en bits y los muestra en un recuadro.
+// Verifica y transforma los datos de ritmo cardíaco, y los muestra en pantalla.
 var
   Flags: THRMFlags;
   LBPM: Integer;
 begin
-  Flags := ObtieneBanderas(Data[0]);
+  Flags := ObtieneBanderas(Data[0]);// verifica el formato
   if Flags.HRValue16bits then
+    // de estar en 16 bits, suma los bytes
     LBPM := Data[1] + (Data[2] * 16)
   else
     LBPM := Data[1];
@@ -437,7 +376,9 @@ begin
   lblPPM.Text := LBPM.ToString + ' ppm';// Muestra datos como texto en la app.
 
 end;
+
 procedure TForm1.MuestraDatosTemperatura(Data: TBytes);
+// Transforma los datos de temperatura en bits y los muestra en pantalla.
 var
   Temperature: SmallInt;// int16 para la temperatura
   TempValue: Double;
@@ -445,10 +386,10 @@ begin
   if Length(Data) >= 2 then
   begin
     Temperature := SmallInt(Data[0] or (Data[1] shl 8));// Convierte los 2 bytes a un valor legible
-    TempValue := Temperature / 10.0;//convierte el valor a decimal (flotante?)
+    TempValue := Temperature / 10.0;//convierte el valor a decimal (flotante)
     // Muestra los valores
     Memo1.Lines.Add(Format('    Temperatura: %.1f°C', [TempValue]));
-     lblTEM.Text := Format('%.1f°C', [TempValue]);
+    lblTEM.Text := Format('%.1f°C', [TempValue]);
   end
   else
   begin
@@ -457,6 +398,7 @@ begin
 end;
 
 procedure TForm1.MuestraDatosHumedad(Data: TBytes);
+// Transforma los datos de humedad en bits y los muestra en pantalla.
 var
   Humidity: Word;// uint16 para la humedad
   HumidityValue: Double;
