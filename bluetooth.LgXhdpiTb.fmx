@@ -21,7 +21,7 @@ inherited Form1_LgXhdpiTb: TForm1_LgXhdpiTb
         448s
         714s)
       inherited ConectarTab: TTabItem
-        Size.Width = 154.000000000000000000
+        Size.Width = 69.000000000000000000
         ExplicitSize.cx = 68.000000000000000000
         ExplicitSize.cy = 26.000000000000000000
         inherited Label4: TLabel
@@ -42,7 +42,7 @@ inherited Form1_LgXhdpiTb: TForm1_LgXhdpiTb
         end
       end
       inherited DashboardTab: TTabItem
-        Size.Width = 154.000000000000000000
+        Size.Width = 79.000000000000000000
         ExplicitSize.cx = 78.000000000000000000
         ExplicitSize.cy = 26.000000000000000000
         inherited Layout1: TLayout
@@ -261,11 +261,16 @@ inherited Form1_LgXhdpiTb: TForm1_LgXhdpiTb
             inherited eligeTabla: TComboBox
               Position.Y = 96.000000000000000000
             end
+            inherited agregaDataOnline: TSpeedButton
+              Position.Y = 8.000000000000000000
+              Size.Width = 48.000000000000000000
+              Size.Height = 48.000000000000000000
+            end
           end
         end
       end
       inherited TestingTab: TTabItem
-        Size.Width = 156.000000000000000000
+        Size.Width = 56.000000000000000000
         ExplicitSize.cx = 58.000000000000000000
         ExplicitSize.cy = 26.000000000000000000
         inherited Memo1: TMemo

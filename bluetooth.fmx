@@ -765,6 +765,7 @@ object Form1: TForm1
           TabOrder = 14
           object VertScrollBox1: TVertScrollBox
             Align = Vertical
+            Locked = True
             Size.Width = 496.000000000000000000
             Size.Height = 574.000000000000000000
             Size.PlatformDefault = False
@@ -776,7 +777,7 @@ object Form1: TForm1
                 'Elegir fecha...')
               ItemIndex = 0
               Position.X = 157.000000000000000000
-              Size.Width = 289.000000000000000000
+              Size.Width = 176.000000000000000000
               Size.Height = 32.000000000000000000
               Size.PlatformDefault = False
               TabOrder = 0
@@ -1147,6 +1148,17 @@ object Form1: TForm1
               Size.PlatformDefault = False
               TabOrder = 9
               OnChange = seleccionaFecha
+            end
+            object agregaDataOnline: TSpeedButton
+              Hint = 'Sincroniza datos registrados a una BD en l'#237'nea'
+              Position.X = 405.000000000000000000
+              Size.Width = 70.000000000000000000
+              Size.Height = 32.000000000000000000
+              Size.PlatformDefault = False
+              StyleLookup = 'refreshtoolbutton'
+              Text = 'agregaDataOnline'
+              TextSettings.Trimming = None
+              OnClick = SyncLocalToOnline
             end
           end
         end

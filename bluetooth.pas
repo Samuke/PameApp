@@ -99,6 +99,7 @@ type
     Label16: TLabel;
     Label17: TLabel;
     Label18: TLabel;
+    agregaDataOnline: TSpeedButton;
     procedure FormShow(Sender: TObject);
     procedure btnEscaneaClick(Sender: TObject);
     procedure btnDetieneEscaneoClick(Sender: TObject);
@@ -118,6 +119,7 @@ type
     procedure cargaFechas(Tabla: string);
     procedure seleccionaFecha(Sender: TObject);
     procedure muestraHistorial(Sender: TObject);
+    procedure SyncLocalToOnline(Sender: TObject);
   private const
     LOCATION_PERMISSION = 'android.permission.ACCESS_FINE_LOCATION';
     BLUETOOTH_SCAN_PERMISSION = 'android.permission.BLUETOOTH_SCAN';
@@ -142,7 +144,7 @@ type
     procedure LeeCaracteristicaOnce;
     procedure CreaArchivos;
     procedure CreaTabla;
-    procedure ConectaBDLocal;
+    procedure ConectaBD;
     procedure GuardaDatosEnvironment;
     procedure fullCheck;
     procedure fullCheckSalud;
@@ -212,7 +214,7 @@ begin
   dataSalud.bolOxig := False;
   dataSalud.bolMagi := False;
   CreaArchivos;
-  ConectaBDLocal;
+  ConectaBD;
 end;
 // =============================================================================
 procedure TForm1.btnEscaneaClick(Sender: TObject);
@@ -886,10 +888,10 @@ begin
   end;
 end;
 
-procedure TForm1.ConectaBDLocal;
+procedure TForm1.ConectaBD;
 /// Conexión a base de datos.
 begin
-  Memo1.Lines.Add('> ConectaBDLocal');
+  Memo1.Lines.Add('> ConectaBD');
   {$IF DEFINED(ANDROID)}
   FDConnection1.DriverName := 'SQLITE';
   FDConnection1.Params.Values['ColumnMetadataSupported'] := 'False' ;
@@ -911,6 +913,24 @@ begin
       Memo1.Lines.Add('    BD: Error en conexión, ' + E.Message);
     end;
   end;
+  // Conexión a la base de datos en línea.
+  FDConnection2.DriverName := 'MySQL';
+  FDConnection2.Params.Values['Server']    := 'shared16.hostgator.cl';
+  FDConnection2.Params.Values['User_Name'] := 'roysucl_admin';
+  FDConnection2.Params.Values['Password']  := 'moteconhuesillo123';
+  FDConnection2.Params.Values['Database']  := 'roysucl_prueba';
+  FDConnection2.LoginPrompt := False;
+  try
+    FDConnection2.Connected := True;
+    Memo1.Lines.Add('    BD: Conexión a base de datos en línea exitosa.');
+  except
+    on E: Exception do
+    begin
+      Memo1.Lines.Add('    Error al conectar: '+ E.Message);
+      ShowMessage('Error al conectar: '+ E.Message);
+    end;
+  end;
+
 end;
 
 procedure TForm1.GuardaDatosEnvironment;
@@ -1118,6 +1138,68 @@ begin
     CargaDatosAGraficoSalud(listaFechas.Items[listaFechas.ItemIndex])
   else
     Memo1.Lines.Add('        ¡Tabla no seleccionada!');
+end;
+// =============================================================================
+procedure TForm1.SyncLocalToOnline(Sender: TObject);
+var
+  LocalQuery, OnlineInsert: TFDQuery;
+  Hora: string;
+  Temp, Humy, Pres, Wind: Double;
+begin
+  Memo1.Lines.Add('> SyncLocalToOnline');
+
+  LocalQuery := TFDQuery.Create(nil);
+  OnlineInsert := TFDQuery.Create(nil);
+  try
+    LocalQuery.Connection := FDConnection1;
+    LocalQuery.SQL.Text := 'SELECT * FROM datos;';
+    LocalQuery.Open;
+    OnlineInsert.Connection := FDConnection2;
+    //Tabla datos
+    while not LocalQuery.Eof do
+    begin
+      OnlineInsert.SQL.Text :=
+        'INSERT INTO datos (fecha, temp, humy, pres, wind) ' +
+        'VALUES (:fecha :hora, :temp, :humy, :pres, :wind);';
+      OnlineInsert.ParamByName('fecha').AsDate := LocalQuery.FieldByName('fecha').AsDateTime;
+      OnlineInsert.ParamByName('temp').AsFloat := LocalQuery.FieldByName('temp').AsFloat;
+      OnlineInsert.ParamByName('humy').AsFloat := LocalQuery.FieldByName('humy').AsFloat;
+      OnlineInsert.ParamByName('pres').AsFloat := LocalQuery.FieldByName('pres').AsFloat;
+      OnlineInsert.ParamByName('wind').AsFloat := LocalQuery.FieldByName('wind').AsFloat;
+      try
+        OnlineInsert.ExecSQL;
+      except
+        on E: Exception do
+          Memo1.Lines.Add('    Error sincronizando registro: ' + E.Message);
+      end;
+      LocalQuery.Next;
+    end;
+    Memo1.Lines.Add('    BD: Tabla `datos` sincronizada.');
+    //Tabla salud
+    LocalQuery.SQL.Text := 'SELECT * FROM salud;';
+    LocalQuery.Open;
+    while not LocalQuery.Eof do
+    begin
+      OnlineInsert.SQL.Text :=
+        'INSERT INTO salud (fecha, ppm, oxi, mag) '+
+        'VALUES (:fecha, :ppm, :oxi, :mag);';
+      OnlineInsert.ParamByName('fecha').AsDate  := LocalQuery.FieldByName('fecha').AsDateTime;
+      OnlineInsert.ParamByName('ppm').AsInteger := LocalQuery.FieldByName('ppm').AsInteger;
+      OnlineInsert.ParamByName('oxi').AsInteger := LocalQuery.FieldByName('oxi').AsInteger;
+      OnlineInsert.ParamByName('mag').AsInteger := LocalQuery.FieldByName('mag').AsInteger;
+      try
+        OnlineInsert.ExecSQL;
+      except
+        on E: Exception do
+          Memo1.Lines.Add('    Error sincronizando registro: ' + E.Message);
+      end;
+      LocalQuery.Next;
+    end;
+    Memo1.Lines.Add('    BD: Tabla `salud` sincronizada.');
+  finally
+    LocalQuery.Free;
+    OnlineInsert.Free;
+  end;
 end;
 
 end.
