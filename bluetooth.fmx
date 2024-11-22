@@ -23,36 +23,34 @@ object Form1: TForm1
     Viewport.Width = 748.000000000000000000
     Viewport.Height = 655.000000000000000000
     object TabControl1: TTabControl
+      Align = Client
       Locked = True
-      Padding.Left = 8.000000000000000000
-      Padding.Right = 8.000000000000000000
       Margins.Left = 8.000000000000000000
       Margins.Top = 8.000000000000000000
       Margins.Right = 8.000000000000000000
       Margins.Bottom = 8.000000000000000000
-      Position.X = 8.000000000000000000
-      Position.Y = 24.000000000000000000
-      Size.Width = 729.000000000000000000
-      Size.Height = 617.000000000000000000
+      Size.Width = 732.000000000000000000
+      Size.Height = 639.000000000000000000
       Size.PlatformDefault = False
-      TabIndex = 0
+      TabHeight = 49.000000000000000000
+      TabIndex = 1
       TabOrder = 10
       TabPosition = Top
       Sizes = (
-        713s
-        591s
-        713s
-        591s
-        713s
-        591s)
+        732s
+        590s
+        732s
+        590s
+        732s
+        590s)
       object ConectarTab: TTabItem
         CustomIcon = <
           item
           end>
         TextSettings.Trimming = None
-        IsSelected = True
+        IsSelected = False
         Size.Width = 68.000000000000000000
-        Size.Height = 26.000000000000000000
+        Size.Height = 49.000000000000000000
         Size.PlatformDefault = False
         StyleLookup = ''
         TabOrder = 0
@@ -71,19 +69,6 @@ object Form1: TForm1
           TextSettings.Trimming = None
           OnClick = btnEscaneaClick
         end
-        object lServicios: TMemo
-          Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
-          DataDetectorTypes = []
-          Anchors = [akLeft, akTop, akRight]
-          Position.X = 8.000000000000000000
-          Position.Y = 317.000000000000000000
-          Size.Width = 696.000000000000000000
-          Size.Height = 177.000000000000000000
-          Size.PlatformDefault = False
-          TabOrder = 4
-          Viewport.Width = 692.000000000000000000
-          Viewport.Height = 173.000000000000000000
-        end
         object btnLee: TButton
           Locked = True
           Position.X = 225.000000000000000000
@@ -91,7 +76,7 @@ object Form1: TForm1
           Size.Width = 209.000000000000000000
           Size.Height = 41.000000000000000000
           Size.PlatformDefault = False
-          TabOrder = 15
+          TabOrder = 12
           Text = 'Lee caracter'#237'sticas una vez'
           TextSettings.Trimming = None
           OnClick = btnLeeClick
@@ -108,23 +93,24 @@ object Form1: TForm1
           TextSettings.Font.StyleExt = {00070000000000000004000000}
           TextSettings.Trimming = None
           Text = 'Elegir dispositivo'
-          TabOrder = 7
+          TabOrder = 5
         end
         object lDispositivos: TListBox
           Anchors = [akLeft, akTop, akRight]
           Margins.Right = 8.000000000000000000
           Position.X = 8.000000000000000000
           Position.Y = 84.000000000000000000
-          Size.Width = 696.000000000000000000
+          Size.Width = 715.000000000000000000
           Size.Height = 178.000000000000000000
           Size.PlatformDefault = False
-          TabOrder = 5
+          TabOrder = 4
+          ShowSizeGrip = True
           DisableFocusEffect = True
           DefaultItemStyles.ItemStyle = ''
           DefaultItemStyles.GroupHeaderStyle = ''
           DefaultItemStyles.GroupFooterStyle = ''
           OnItemClick = lDispositivosItemClick
-          Viewport.Width = 692.000000000000000000
+          Viewport.Width = 711.000000000000000000
           Viewport.Height = 174.000000000000000000
         end
         object Label6: TLabel
@@ -141,118 +127,1027 @@ object Form1: TForm1
           Text = 'Log - Listado de servicios'
           TabOrder = 6
         end
+        object lServicios: TMemo
+          Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+          DataDetectorTypes = []
+          ShowSizeGrip = True
+          Anchors = [akLeft, akTop, akRight]
+          Position.X = 8.000000000000000000
+          Position.Y = 317.000000000000000000
+          Size.Width = 715.000000000000000000
+          Size.Height = 177.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 3
+          Viewport.Width = 711.000000000000000000
+          Viewport.Height = 173.000000000000000000
+        end
       end
       object DashboardTab: TTabItem
         CustomIcon = <
           item
           end>
         TextSettings.Trimming = None
-        IsSelected = False
+        IsSelected = True
         Size.Width = 78.000000000000000000
-        Size.Height = 26.000000000000000000
+        Size.Height = 49.000000000000000000
         Size.PlatformDefault = False
         StyleLookup = ''
         TabOrder = 0
         Text = 'Dashboard'
         ExplicitSize.cx = 78.000000000000000000
         ExplicitSize.cy = 26.000000000000000000
-        object Panel1: TPanel
-          Position.X = 24.000000000000000000
-          Position.Y = 29.000000000000000000
-          Size.Width = 377.000000000000000000
-          Size.Height = 145.000000000000000000
-          Size.PlatformDefault = False
-          TabOrder = 17
-          object Label3: TLabel
-            StyledSettings = [Family, FontColor]
-            Position.X = 8.000000000000000000
-            Position.Y = 8.000000000000000000
-            TextSettings.Font.Size = 14.000000000000000000
-            TextSettings.Font.StyleExt = {00070000000000000004000000}
-            TextSettings.Trimming = None
-            Text = 'Pulso'
-            TabOrder = 3
-          end
-          object lblPPM: TLabel
-            StyledSettings = [Family, FontColor]
-            Position.X = 8.000000000000000000
-            Position.Y = 33.000000000000000000
-            Size.Width = 201.000000000000000000
-            Size.Height = 120.000000000000000000
-            Size.PlatformDefault = False
-            StyleLookup = 'lblPPMStyle1'
-            TextSettings.Font.Size = 20.000000000000000000
-            TextSettings.Font.StyleExt = {00070000000000000004000000}
-            TextSettings.HorzAlign = Center
-            TextSettings.Trimming = None
-            Text = '- ppm'
-            TabOrder = 10
-          end
-        end
-        object Panel2: TPanel
-          Position.X = 24.000000000000000000
-          Position.Y = 190.000000000000000000
-          Size.Width = 377.000000000000000000
-          Size.Height = 145.000000000000000000
-          Size.PlatformDefault = False
-          TabOrder = 16
-          object Label2: TLabel
-            StyledSettings = [Family, FontColor]
-            Position.X = 8.000000000000000000
-            Position.Y = 8.000000000000000000
-            TextSettings.Font.Size = 14.000000000000000000
-            TextSettings.Font.StyleExt = {00070000000000000004000000}
-            TextSettings.Trimming = None
-            Text = 'Temperatura'
-            TabOrder = 3
-          end
-          object lblTEM: TLabel
-            StyledSettings = [Family, FontColor]
-            Position.X = 8.000000000000000000
-            Position.Y = 33.000000000000000000
-            Size.Width = 201.000000000000000000
-            Size.Height = 120.000000000000000000
-            Size.PlatformDefault = False
-            StyleLookup = 'lblTEMStyle1'
-            TextSettings.Font.Size = 20.000000000000000000
-            TextSettings.Font.StyleExt = {00070000000000000004000000}
-            TextSettings.HorzAlign = Center
-            TextSettings.Trimming = None
-            Text = '-'#176'C'
-            TabOrder = 10
-          end
-        end
-        object Panel3: TPanel
-          Position.X = 24.000000000000000000
-          Position.Y = 351.000000000000000000
-          Size.Width = 377.000000000000000000
-          Size.Height = 145.000000000000000000
+        object Layout1: TLayout
+          Align = Contents
+          Size.Width = 732.000000000000000000
+          Size.Height = 590.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 15
-          object Label5: TLabel
-            StyledSettings = [Family, FontColor]
-            Position.X = 8.000000000000000000
-            Position.Y = 8.000000000000000000
-            TextSettings.Font.Size = 14.000000000000000000
-            TextSettings.Font.StyleExt = {00070000000000000004000000}
-            TextSettings.Trimming = None
-            Text = 'Humedad'
-            TabOrder = 3
-          end
-          object lblHUM: TLabel
-            StyledSettings = [Family, FontColor]
-            Position.X = 8.000000000000000000
-            Position.Y = 33.000000000000000000
-            Size.Width = 201.000000000000000000
-            Size.Height = 120.000000000000000000
+          object PresentedScrollBox1: TPresentedScrollBox
+            Align = Contents
+            Margins.Top = 8.000000000000000000
+            Margins.Bottom = 8.000000000000000000
+            Size.Width = 732.000000000000000000
+            Size.Height = 574.000000000000000000
             Size.PlatformDefault = False
-            StyleLookup = 'lblHUMStyle1'
-            TextSettings.Font.Size = 20.000000000000000000
-            TextSettings.Font.StyleExt = {00070000000000000004000000}
-            TextSettings.HorzAlign = Center
-            TextSettings.Trimming = None
-            Text = '-%'
-            TabOrder = 10
+            TabOrder = 14
+            Viewport.Width = 716.000000000000000000
+            Viewport.Height = 574.000000000000000000
+            object Label18: TLabel
+              Locked = True
+              Position.X = 640.000000000000000000
+              Size.Width = 72.000000000000000000
+              Size.Height = 17.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              TextSettings.Trimming = None
+              Text = 'Ver historial'
+              TabOrder = 17
+            end
+            object btnHistorial: TSpeedButton
+              Locked = True
+              Position.X = 665.000000000000000000
+              Position.Y = 6.000000000000000000
+              Size.Width = 48.000000000000000000
+              Size.Height = 48.000000000000000000
+              Size.PlatformDefault = False
+              StyleLookup = 'arrowdowntoolbutton'
+              Text = 'btnHistorial'
+              TextSettings.Trimming = None
+            end
+            object Panel1: TPanel
+              Locked = True
+              Position.X = 24.000000000000000000
+              Position.Y = 21.000000000000000000
+              Size.Width = 624.000000000000000000
+              Size.Height = 332.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 16
+              object chartOxig: TChart
+                Position.X = 376.000000000000000000
+                Position.Y = 33.000000000000000000
+                Foot.Font.StyleExt = {00040000000200000004000000}
+                Legend.Title.Font.StyleExt = {00070000000000000004000000}
+                Legend.Visible = False
+                SubFoot.Font.StyleExt = {00040000000200000004000000}
+                Title.Text.Strings = (
+                  'TChart')
+                Title.Visible = False
+                Shadow.Visible = False
+                View3D = False
+                View3DOptions.Elevation = 315
+                View3DOptions.Orthogonal = False
+                View3DOptions.Perspective = 0
+                View3DOptions.Rotation = 360
+                View3DWalls = False
+                Zoom.Allow = False
+                Zoom.Brush.Kind = None
+                Zoom.Pen.Fill.Color = claSilver
+                BevelOuter = bvNone
+                TabOrder = 6
+                Cursor = crAppStart
+                Size.Width = 153.000000000000000000
+                Size.Height = 132.000000000000000000
+                Size.PlatformDefault = False
+                ColorPaletteIndex = 13
+                object PieSeries1: TPieSeries
+                  HoverElement = []
+                  Legend.Visible = False
+                  Marks.Visible = False
+                  Marks.Tail.Margin = 2
+                  ShowInLegend = False
+                  XValues.Order = loAscending
+                  YValues.Name = 'Pie'
+                  YValues.Order = loNone
+                  Frame.InnerBrush.Kind = Gradient
+                  Frame.InnerBrush.Gradient.EndColor = claGray
+                  Frame.InnerBrush.Gradient.MidColor = claWhite
+                  Frame.InnerBrush.Gradient.StartColor = xFF404040
+                  Frame.InnerBrush.Gradient.Visible = True
+                  Frame.InnerBrush.BackColor = claRed
+                  Frame.MiddleBrush.Kind = Gradient
+                  Frame.MiddleBrush.Gradient.EndColor = xFF828282
+                  Frame.MiddleBrush.Gradient.MidColor = claWhite
+                  Frame.MiddleBrush.Gradient.StartColor = claGray
+                  Frame.MiddleBrush.Gradient.Visible = True
+                  Frame.MiddleBrush.BackColor = claYellow
+                  Frame.OuterBrush.Kind = Gradient
+                  Frame.OuterBrush.Gradient.EndColor = xFF404040
+                  Frame.OuterBrush.Gradient.MidColor = claWhite
+                  Frame.OuterBrush.Gradient.StartColor = claSilver
+                  Frame.OuterBrush.Gradient.Visible = True
+                  Frame.OuterBrush.BackColor = claGreen
+                  Frame.Width = 4
+                  OtherSlice.Legend.Title.Font.StyleExt = {00070000000000000004000000}
+                  OtherSlice.Legend.Visible = False
+                  PiePen.Visible = False
+                end
+              end
+              object Label3: TLabel
+                StyledSettings = [Family, FontColor]
+                Position.X = 8.000000000000000000
+                Position.Y = 8.000000000000000000
+                TextSettings.Font.Size = 14.000000000000000000
+                TextSettings.Font.StyleExt = {00070000000000000004000000}
+                TextSettings.Trimming = None
+                Text = 'Ritmo card'#237'aco'
+                TabOrder = 5
+              end
+              object lblPPM: TLabel
+                StyledSettings = [Family, FontColor]
+                Position.X = 8.000000000000000000
+                Position.Y = 33.000000000000000000
+                Size.Width = 137.000000000000000000
+                Size.Height = 97.000000000000000000
+                Size.PlatformDefault = False
+                StyleLookup = 'lblPPMStyle1'
+                TextSettings.Font.Size = 20.000000000000000000
+                TextSettings.Font.StyleExt = {00070000000000000004000000}
+                TextSettings.HorzAlign = Center
+                TextSettings.Trimming = None
+                Text = '- ppm'
+                TabOrder = 12
+              end
+              object chartPuls: TChart
+                Position.X = 8.000000000000000000
+                Position.Y = 138.000000000000000000
+                AllowPanning = pmHorizontal
+                Foot.Font.StyleExt = {00040000000200000004000000}
+                Legend.Title.Font.StyleExt = {00070000000000000004000000}
+                Legend.Visible = False
+                SubFoot.Font.StyleExt = {00040000000200000004000000}
+                Title.Text.Strings = (
+                  'TChart')
+                Title.Visible = False
+                BottomAxis.Grid.Color = x88C0C0C0
+                BottomAxis.Grid.Fill.Color = x88C0C0C0
+                BottomAxis.Visible = False
+                View3D = False
+                View3DWalls = False
+                Zoom.Allow = False
+                Zoom.Brush.Kind = None
+                Zoom.Pen.Fill.Color = claSilver
+                BevelOuter = bvNone
+                TabOrder = 14
+                Size.Width = 289.000000000000000000
+                Size.Height = 159.000000000000000000
+                Size.PlatformDefault = False
+                ColorPaletteIndex = 13
+                object seriePuls: TFastLineSeries
+                  HoverElement = []
+                  Selected.Hover.Visible = True
+                  LinePen.Color = xFFFA806A
+                  LinePen.Width = 3.000000000000000000
+                  LinePen.Fill.Color = xFFFA806A
+                  TreatNulls = tnDontPaint
+                  XValues.Name = 'X'
+                  XValues.Order = loAscending
+                  YValues.Name = 'Y'
+                  YValues.Order = loNone
+                end
+              end
+              object chartMagi: TChart
+                Position.X = 376.000000000000000000
+                Position.Y = 189.000000000000000000
+                Foot.Font.StyleExt = {00040000000200000004000000}
+                Legend.Title.Font.StyleExt = {00070000000000000004000000}
+                Legend.Visible = False
+                SubFoot.Font.StyleExt = {00040000000200000004000000}
+                Title.Text.Strings = (
+                  'TChart')
+                Title.Visible = False
+                Shadow.Visible = False
+                View3D = False
+                View3DOptions.Elevation = 315
+                View3DOptions.Orthogonal = False
+                View3DOptions.Perspective = 0
+                View3DOptions.Rotation = 360
+                View3DWalls = False
+                Zoom.Allow = False
+                Zoom.Brush.Kind = None
+                Zoom.Pen.Fill.Color = claSilver
+                BevelOuter = bvNone
+                TabOrder = 7
+                Cursor = crAppStart
+                Size.Width = 153.000000000000000000
+                Size.Height = 132.000000000000000000
+                Size.PlatformDefault = False
+                ColorPaletteIndex = 13
+                object serieMagi: TPieSeries
+                  HoverElement = []
+                  Legend.Visible = False
+                  Marks.Visible = False
+                  Marks.Tail.Margin = 2
+                  SeriesColor = xFF751EAE
+                  ShowInLegend = False
+                  XValues.Order = loAscending
+                  YValues.Name = 'Pie'
+                  YValues.Order = loNone
+                  Frame.InnerBrush.Kind = Gradient
+                  Frame.InnerBrush.Gradient.EndColor = claGray
+                  Frame.InnerBrush.Gradient.MidColor = claWhite
+                  Frame.InnerBrush.Gradient.StartColor = xFF404040
+                  Frame.InnerBrush.Gradient.Visible = True
+                  Frame.InnerBrush.BackColor = claRed
+                  Frame.MiddleBrush.Kind = Gradient
+                  Frame.MiddleBrush.Gradient.EndColor = xFF828282
+                  Frame.MiddleBrush.Gradient.MidColor = claWhite
+                  Frame.MiddleBrush.Gradient.StartColor = claGray
+                  Frame.MiddleBrush.Gradient.Visible = True
+                  Frame.MiddleBrush.BackColor = claYellow
+                  Frame.OuterBrush.Kind = Gradient
+                  Frame.OuterBrush.Gradient.EndColor = xFF404040
+                  Frame.OuterBrush.Gradient.MidColor = claWhite
+                  Frame.OuterBrush.Gradient.StartColor = claSilver
+                  Frame.OuterBrush.Gradient.Visible = True
+                  Frame.OuterBrush.BackColor = claGreen
+                  Frame.Width = 4
+                  OtherSlice.Legend.Title.Font.StyleExt = {00070000000000000004000000}
+                  OtherSlice.Legend.Visible = False
+                  PiePen.Visible = False
+                end
+              end
+              object Label7: TLabel
+                StyledSettings = [Family, FontColor]
+                Position.X = 328.000000000000000000
+                Position.Y = 8.000000000000000000
+                TextSettings.Font.Size = 14.000000000000000000
+                TextSettings.Font.StyleExt = {00070000000000000004000000}
+                TextSettings.Trimming = None
+                Text = 'Nivel de Oxigeno'
+                TabOrder = 3
+              end
+              object Label8: TLabel
+                StyledSettings = [Family, FontColor]
+                Position.X = 328.000000000000000000
+                Position.Y = 169.000000000000000000
+                TextSettings.Font.Size = 14.000000000000000000
+                TextSettings.Font.StyleExt = {00070000000000000004000000}
+                TextSettings.Trimming = None
+                Text = 'Nivel de Magia'
+                TabOrder = 4
+              end
+              object Circle1: TCircle
+                Position.X = 419.000000000000000000
+                Position.Y = 221.000000000000000000
+                Size.Width = 70.000000000000000000
+                Size.Height = 70.000000000000000000
+                Size.PlatformDefault = False
+              end
+              object lblMAGI: TLabel
+                StyledSettings = [Family, FontColor]
+                Position.X = 392.000000000000000000
+                Position.Y = 194.000000000000000000
+                Size.Width = 122.000000000000000000
+                Size.Height = 122.000000000000000000
+                Size.PlatformDefault = False
+                StyleLookup = 'lblPPMStyle1'
+                TextSettings.Font.Size = 20.000000000000000000
+                TextSettings.Font.StyleExt = {00070000000000000004000000}
+                TextSettings.HorzAlign = Center
+                TextSettings.Trimming = None
+                Text = '- %'
+                TabOrder = 9
+              end
+              object Circle2: TCircle
+                Position.X = 419.000000000000000000
+                Position.Y = 65.000000000000000000
+                Size.Width = 70.000000000000000000
+                Size.Height = 70.000000000000000000
+                Size.PlatformDefault = False
+              end
+              object lblOXY: TLabel
+                StyledSettings = [Family, FontColor]
+                Position.X = 392.000000000000000000
+                Position.Y = 38.000000000000000000
+                Size.Width = 122.000000000000000000
+                Size.Height = 122.000000000000000000
+                Size.PlatformDefault = False
+                StyleLookup = 'lblPPMStyle1'
+                TextSettings.Font.Size = 20.000000000000000000
+                TextSettings.Font.StyleExt = {00070000000000000004000000}
+                TextSettings.HorzAlign = Center
+                TextSettings.Trimming = None
+                Text = '- %'
+                TabOrder = 10
+              end
+            end
+            object Panel2: TPanel
+              Locked = True
+              Position.X = 24.000000000000000000
+              Position.Y = 361.000000000000000000
+              Size.Width = 624.000000000000000000
+              Size.Height = 512.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 15
+              object Label2: TLabel
+                StyledSettings = [Family, FontColor]
+                Position.X = 8.000000000000000000
+                Position.Y = 8.000000000000000000
+                TextSettings.Font.Size = 14.000000000000000000
+                TextSettings.Font.StyleExt = {00070000000000000004000000}
+                TextSettings.Trimming = None
+                Text = 'Temperatura'
+                TabOrder = 6
+              end
+              object lblTEM: TLabel
+                StyledSettings = [Family, FontColor]
+                Position.X = 8.000000000000000000
+                Position.Y = 33.000000000000000000
+                Size.Width = 201.000000000000000000
+                Size.Height = 49.000000000000000000
+                Size.PlatformDefault = False
+                StyleLookup = 'lblTEMStyle1'
+                TextSettings.Font.Size = 20.000000000000000000
+                TextSettings.Font.StyleExt = {00070000000000000004000000}
+                TextSettings.HorzAlign = Center
+                TextSettings.Trimming = None
+                Text = '- '#176'C'
+                TabOrder = 13
+              end
+              object chartTemp: TChart
+                Position.X = 8.000000000000000000
+                Position.Y = 81.000000000000000000
+                AllowPanning = pmHorizontal
+                Foot.Font.StyleExt = {00040000000200000004000000}
+                Legend.Title.Font.StyleExt = {00070000000000000004000000}
+                Legend.Visible = False
+                SubFoot.Font.StyleExt = {00040000000200000004000000}
+                Title.Text.Strings = (
+                  'TChart')
+                Title.Visible = False
+                BottomAxis.Grid.Color = x88C0C0C0
+                BottomAxis.Grid.Fill.Color = x88C0C0C0
+                BottomAxis.Visible = False
+                LeftAxis.AxisValuesFormat = '##,#'#176'C'
+                View3D = False
+                View3DWalls = False
+                Zoom.Allow = False
+                Zoom.Brush.Kind = None
+                Zoom.Pen.Fill.Color = claSilver
+                BevelOuter = bvNone
+                TabOrder = 19
+                Size.Width = 297.000000000000000000
+                Size.Height = 159.000000000000000000
+                Size.PlatformDefault = False
+                ColorPaletteIndex = 13
+                object serieTemp: TAreaSeries
+                  HoverElement = [heCurrent]
+                  Gradient.EndColor = xFF1C034C
+                  Gradient.MidColor = xFFE1CBBA
+                  Gradient.StartColor = xFFF91E29
+                  SeriesColor = xFFF9F191
+                  ValueFormat = '##.#'
+                  AreaChartBrush.Color = claGray
+                  AreaChartBrush.Gradient.EndColor = xFF1C034C
+                  AreaChartBrush.Gradient.MidColor = xFFE1CBBA
+                  AreaChartBrush.Gradient.StartColor = xFFF91E29
+                  AreaChartBrush.BackColor = x00FFFFFF
+                  AreaLinesPen.Visible = False
+                  DrawArea = True
+                  LinePen.Color = xFFF3C95D
+                  LinePen.Width = 3.000000000000000000
+                  LinePen.EndStyle = esFlat
+                  LinePen.Fill.Color = xFFF3C95D
+                  Pointer.InflateMargins = True
+                  Pointer.Style = psRectangle
+                  Pointer.Visible = False
+                  XValues.Name = 'X'
+                  XValues.Order = loAscending
+                  YValues.Name = 'Y'
+                  YValues.Order = loNone
+                end
+              end
+              object chartHumy: TChart
+                Position.X = 313.000000000000000000
+                Position.Y = 81.000000000000000000
+                AllowPanning = pmHorizontal
+                Foot.Font.StyleExt = {00040000000200000004000000}
+                Legend.Title.Font.StyleExt = {00070000000000000004000000}
+                Legend.Visible = False
+                SubFoot.Font.StyleExt = {00040000000200000004000000}
+                Title.Text.Strings = (
+                  'TChart')
+                Title.Visible = False
+                BottomAxis.Grid.Color = x88C0C0C0
+                BottomAxis.Grid.Fill.Color = x88C0C0C0
+                BottomAxis.Visible = False
+                LeftAxis.AxisValuesFormat = '##.##%'
+                View3D = False
+                View3DWalls = False
+                Zoom.Allow = False
+                Zoom.Brush.Kind = None
+                Zoom.Pen.Fill.Color = claSilver
+                BevelOuter = bvNone
+                TabOrder = 18
+                Size.Width = 303.000000000000000000
+                Size.Height = 159.000000000000000000
+                Size.PlatformDefault = False
+                ColorPaletteIndex = 13
+                object serieHumy: TFastLineSeries
+                  HoverElement = []
+                  Selected.Hover.Visible = True
+                  ValueFormat = '##.##%'
+                  LinePen.Color = xFF76CFFB
+                  LinePen.Width = 3.000000000000000000
+                  LinePen.Fill.Color = xFF76CFFB
+                  TreatNulls = tnDontPaint
+                  XValues.Name = 'X'
+                  XValues.Order = loAscending
+                  YValues.Name = 'Y'
+                  YValues.Order = loNone
+                end
+              end
+              object Label5: TLabel
+                StyledSettings = [Family, FontColor]
+                Position.X = 313.000000000000000000
+                Position.Y = 8.000000000000000000
+                TextSettings.Font.Size = 14.000000000000000000
+                TextSettings.Font.StyleExt = {00070000000000000004000000}
+                TextSettings.Trimming = None
+                Text = 'Humedad'
+                TabOrder = 5
+              end
+              object lblHUM: TLabel
+                StyledSettings = [Family, FontColor]
+                Position.X = 313.000000000000000000
+                Position.Y = 33.000000000000000000
+                Size.Width = 201.000000000000000000
+                Size.Height = 49.000000000000000000
+                Size.PlatformDefault = False
+                StyleLookup = 'lblHUMStyle1'
+                TextSettings.Font.Size = 20.000000000000000000
+                TextSettings.Font.StyleExt = {00070000000000000004000000}
+                TextSettings.HorzAlign = Center
+                TextSettings.Trimming = None
+                Text = '- %'
+                TabOrder = 10
+              end
+              object lblPRE: TLabel
+                StyledSettings = [Family, FontColor]
+                Position.X = 24.000000000000000000
+                Position.Y = 265.000000000000000000
+                Size.Width = 201.000000000000000000
+                Size.Height = 49.000000000000000000
+                Size.PlatformDefault = False
+                StyleLookup = 'lblTEMStyle1'
+                TextSettings.Font.Size = 20.000000000000000000
+                TextSettings.Font.StyleExt = {00070000000000000004000000}
+                TextSettings.HorzAlign = Center
+                TextSettings.Trimming = None
+                Text = '- hPa'
+                TabOrder = 12
+              end
+              object lblWIN: TLabel
+                StyledSettings = [Family, FontColor]
+                Position.X = 313.000000000000000000
+                Position.Y = 265.000000000000000000
+                Size.Width = 201.000000000000000000
+                Size.Height = 49.000000000000000000
+                Size.PlatformDefault = False
+                StyleLookup = 'lblTEMStyle1'
+                TextSettings.Font.Size = 20.000000000000000000
+                TextSettings.Font.StyleExt = {00070000000000000004000000}
+                TextSettings.HorzAlign = Center
+                TextSettings.Trimming = None
+                Text = '- km/h'
+                TabOrder = 11
+              end
+              object chartPres: TChart
+                Position.X = 8.000000000000000000
+                Position.Y = 322.000000000000000000
+                AllowPanning = pmHorizontal
+                Foot.Font.StyleExt = {00040000000200000004000000}
+                Legend.Title.Font.StyleExt = {00070000000000000004000000}
+                Legend.Visible = False
+                SubFoot.Font.StyleExt = {00040000000200000004000000}
+                Title.Text.Strings = (
+                  'TChart')
+                Title.Visible = False
+                BottomAxis.Grid.Color = x88C0C0C0
+                BottomAxis.Grid.Fill.Color = x88C0C0C0
+                BottomAxis.Visible = False
+                LeftAxis.AxisValuesFormat = '###hPa'
+                Panning.MouseWheel = pmwNone
+                View3D = False
+                View3DWalls = False
+                Zoom.Allow = False
+                Zoom.Brush.Kind = None
+                Zoom.Pen.Fill.Color = claSilver
+                BevelOuter = bvNone
+                TabOrder = 17
+                Size.Width = 303.000000000000000000
+                Size.Height = 159.000000000000000000
+                Size.PlatformDefault = False
+                ColorPaletteIndex = 13
+                object FastLineSeries1: TBarSeries
+                  HoverElement = []
+                  BarPen.Color = xFFC4E9FC
+                  BarPen.Width = 3.000000000000000000
+                  BarPen.EndStyle = esFlat
+                  BarPen.Fill.Color = xFFC4E9FC
+                  BarPen.Visible = False
+                  Marks.Visible = False
+                  Marks.Callout.Length = 8
+                  SeriesColor = xFF38C1B6
+                  ValueFormat = '##hPa'
+                  XValues.Name = 'X'
+                  XValues.Order = loAscending
+                  YValues.Name = 'Bar'
+                  YValues.Order = loNone
+                end
+              end
+              object chartWind: TChart
+                Position.X = 313.000000000000000000
+                Position.Y = 322.000000000000000000
+                AllowPanning = pmHorizontal
+                Foot.Font.StyleExt = {00040000000200000004000000}
+                Legend.Title.Font.StyleExt = {00070000000000000004000000}
+                Legend.Visible = False
+                SubFoot.Font.StyleExt = {00040000000200000004000000}
+                Title.Text.Strings = (
+                  'TChart')
+                Title.Visible = False
+                BottomAxis.AxisValuesFormat = '###.#km/h'
+                BottomAxis.Grid.Color = x88C0C0C0
+                BottomAxis.Grid.Fill.Color = x88C0C0C0
+                LeftAxis.AxisValuesFormat = '###.#km/h'
+                LeftAxis.Visible = False
+                View3D = False
+                View3DWalls = False
+                Zoom.Allow = False
+                Zoom.Brush.Kind = None
+                Zoom.Pen.Fill.Color = claSilver
+                BevelOuter = bvNone
+                TabOrder = 16
+                Size.Width = 303.000000000000000000
+                Size.Height = 159.000000000000000000
+                Size.PlatformDefault = False
+                ColorPaletteIndex = 13
+                object FastLineSeries2: THorizBarSeries
+                  HoverElement = []
+                  BarBrush.Gradient.Direction = gdLeftRight
+                  BarPen.Color = xFF76CFFB
+                  BarPen.Width = 3.000000000000000000
+                  BarPen.EndStyle = esFlat
+                  BarPen.Fill.Color = xFF76CFFB
+                  BarPen.Visible = False
+                  Marks.Visible = False
+                  Marks.Callout.Length = 8
+                  SeriesColor = xFFF8A596
+                  ValueFormat = '##.##%'
+                  Gradient.Direction = gdLeftRight
+                  Sides = 17
+                  XValues.Name = 'Bar'
+                  XValues.Order = loNone
+                  YValues.Name = 'Y'
+                  YValues.Order = loAscending
+                end
+              end
+              object Label9: TLabel
+                StyledSettings = [Family, FontColor]
+                Position.X = 24.000000000000000000
+                Position.Y = 248.000000000000000000
+                Size.Width = 157.000000000000000000
+                Size.Height = 17.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.Font.Size = 14.000000000000000000
+                TextSettings.Font.StyleExt = {00070000000000000004000000}
+                TextSettings.Trimming = None
+                Text = 'Presi'#243'n atmosf'#233'rica'
+                TabOrder = 4
+              end
+              object Label10: TLabel
+                StyledSettings = [Family, FontColor]
+                Position.X = 313.000000000000000000
+                Position.Y = 248.000000000000000000
+                Size.Width = 168.000000000000000000
+                Size.Height = 17.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.Font.Size = 14.000000000000000000
+                TextSettings.Font.StyleExt = {00070000000000000004000000}
+                TextSettings.Trimming = None
+                Text = 'Velocidad de viento'
+                TabOrder = 3
+              end
+            end
+          end
+        end
+        object MultiView1: TMultiView
+          DrawerOptions.DurationSliding = 0.150000005960464500
+          MasterButton = btnHistorial
+          Mode = Drawer
+          NavigationPaneOptions.CollapsedWidth = 24.000000000000000000
+          Padding.Left = 8.000000000000000000
+          Padding.Top = 16.000000000000000000
+          Size.Width = 510.000000000000000000
+          Size.Height = 590.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 14
+          object VertScrollBox1: TVertScrollBox
+            Align = Vertical
+            Size.Width = 496.000000000000000000
+            Size.Height = 574.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 0
+            Viewport.Width = 496.000000000000000000
+            Viewport.Height = 574.000000000000000000
+            object listaFechas: TComboBox
+              Items.Strings = (
+                'Elegir fecha...')
+              ItemIndex = 0
+              Position.X = 157.000000000000000000
+              Size.Width = 289.000000000000000000
+              Size.Height = 32.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 0
+              OnChange = muestraHistorial
+            end
+            object InfoIcon: TSpeedButton
+              Enabled = False
+              Position.X = -3.000000000000000000
+              Position.Y = 40.000000000000000000
+              Size.Width = 48.000000000000000000
+              Size.Height = 48.000000000000000000
+              Size.PlatformDefault = False
+              StyleLookup = 'infotoolbutton'
+              Text = 'InfoIcon'
+              TextSettings.Trimming = None
+            end
+            object Memo2: TMemo
+              Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+              DataDetectorTypes = []
+              Lines.Strings = (
+                
+                  'Zoom In: Click izquierdo y arrastra desde izquierda hacia derech' +
+                  'a-abajo.'
+                'Resetear Zoom: Click izquierdo y arrastra desde derecha'
+                '                           hacia arriba-izquierda.'
+                'Mover gr'#225'fico: Mantener click derecho y arrastrar.')
+              Enabled = False
+              EnabledScroll = False
+              Position.X = 40.000000000000000000
+              Position.Y = 40.000000000000000000
+              Size.Width = 435.000000000000000000
+              Size.Height = 73.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 2
+              Viewport.Width = 431.000000000000000000
+              Viewport.Height = 69.000000000000000000
+            end
+            object Panel3: TPanel
+              Position.X = -3.000000000000000000
+              Position.Y = 121.000000000000000000
+              Size.Width = 476.000000000000000000
+              Size.Height = 1128.000000000000000000
+              Size.PlatformDefault = False
+              Visible = False
+              TabOrder = 8
+              object Chart1: TChart
+                Position.Y = 25.000000000000000000
+                Foot.Font.StyleExt = {00040000000200000004000000}
+                LeftWall.Dark3D = False
+                LeftWall.Visible = False
+                Legend.Title.Font.StyleExt = {00070000000000000004000000}
+                Legend.Visible = False
+                SubFoot.Font.StyleExt = {00040000000200000004000000}
+                Title.Text.Strings = (
+                  'TChart')
+                Title.Visible = False
+                LeftAxis.AxisValuesFormat = '##,#'#176'C'
+                Panning.MouseWheel = pmwNone
+                View3D = False
+                Zoom.Brush.Kind = None
+                Zoom.Pen.Fill.Color = claSilver
+                BevelOuter = bvNone
+                TabOrder = 3
+                Cursor = crIBeam
+                Size.Width = 470.000000000000000000
+                Size.Height = 250.000000000000000000
+                Size.PlatformDefault = False
+                ColorPaletteIndex = 13
+                object Series1: TAreaSeries
+                  HoverElement = [heCurrent]
+                  AreaChartBrush.BackColor = x00FFFFFF
+                  DrawArea = True
+                  Pointer.InflateMargins = True
+                  Pointer.Style = psRectangle
+                  Pointer.Visible = False
+                  XValues.DateTime = True
+                  XValues.Name = 'X'
+                  XValues.Order = loAscending
+                  YValues.Name = 'Y'
+                  YValues.Order = loNone
+                end
+              end
+              object Chart2: TChart
+                Position.Y = 308.000000000000000000
+                Foot.Font.StyleExt = {00040000000200000004000000}
+                LeftWall.Dark3D = False
+                LeftWall.Visible = False
+                Legend.Title.Font.StyleExt = {00070000000000000004000000}
+                Legend.Visible = False
+                SubFoot.Font.StyleExt = {00040000000200000004000000}
+                Title.Text.Strings = (
+                  'TChart')
+                Title.Visible = False
+                LeftAxis.AxisValuesFormat = '##,##%'
+                Panning.MouseWheel = pmwNone
+                View3D = False
+                Zoom.Brush.Kind = None
+                Zoom.Pen.Fill.Color = claSilver
+                BevelOuter = bvNone
+                TabOrder = 2
+                Cursor = crSizeWE
+                Size.Width = 470.000000000000000000
+                Size.Height = 250.000000000000000000
+                Size.PlatformDefault = False
+                ColorPaletteIndex = 13
+                object AreaSeries1: TAreaSeries
+                  HoverElement = [heCurrent]
+                  AreaChartBrush.BackColor = x00FFFFFF
+                  DrawArea = True
+                  Pointer.InflateMargins = True
+                  Pointer.Style = psRectangle
+                  Pointer.Visible = False
+                  XValues.DateTime = True
+                  XValues.Name = 'X'
+                  XValues.Order = loAscending
+                  YValues.Name = 'Y'
+                  YValues.Order = loNone
+                end
+              end
+              object Chart3: TChart
+                Position.Y = 591.000000000000000000
+                Foot.Font.StyleExt = {00040000000200000004000000}
+                LeftWall.Dark3D = False
+                LeftWall.Visible = False
+                Legend.Title.Font.StyleExt = {00070000000000000004000000}
+                Legend.Visible = False
+                SubFoot.Font.StyleExt = {00040000000200000004000000}
+                Title.Text.Strings = (
+                  'TChart')
+                Title.Visible = False
+                LeftAxis.AxisValuesFormat = '###hPa'
+                Panning.MouseWheel = pmwNone
+                View3D = False
+                Zoom.Brush.Kind = None
+                Zoom.Pen.Fill.Color = claSilver
+                BevelOuter = bvNone
+                TabOrder = 1
+                Cursor = crSizeWE
+                Size.Width = 470.000000000000000000
+                Size.Height = 250.000000000000000000
+                Size.PlatformDefault = False
+                ColorPaletteIndex = 13
+                object AreaSeries2: TAreaSeries
+                  HoverElement = [heCurrent]
+                  AreaChartBrush.BackColor = x00FFFFFF
+                  DrawArea = True
+                  Pointer.InflateMargins = True
+                  Pointer.Style = psRectangle
+                  Pointer.Visible = False
+                  XValues.DateTime = True
+                  XValues.Name = 'X'
+                  XValues.Order = loAscending
+                  YValues.Name = 'Y'
+                  YValues.Order = loNone
+                end
+              end
+              object Chart4: TChart
+                Position.Y = 861.000000000000000000
+                Foot.Font.StyleExt = {00040000000200000004000000}
+                LeftWall.Dark3D = False
+                LeftWall.Visible = False
+                Legend.Title.Font.StyleExt = {00070000000000000004000000}
+                Legend.Visible = False
+                SubFoot.Font.StyleExt = {00040000000200000004000000}
+                Title.Text.Strings = (
+                  'TChart')
+                Title.Visible = False
+                LeftAxis.AxisValuesFormat = '###,#km/h'
+                Panning.MouseWheel = pmwNone
+                View3D = False
+                Zoom.Brush.Kind = None
+                Zoom.Pen.Fill.Color = claSilver
+                BevelOuter = bvNone
+                TabOrder = 0
+                Cursor = crSizeWE
+                Size.Width = 470.000000000000000000
+                Size.Height = 250.000000000000000000
+                Size.PlatformDefault = False
+                ColorPaletteIndex = 13
+                object AreaSeries3: TAreaSeries
+                  HoverElement = [heCurrent]
+                  AreaChartBrush.BackColor = x00FFFFFF
+                  DrawArea = True
+                  Pointer.InflateMargins = True
+                  Pointer.Style = psRectangle
+                  Pointer.Visible = False
+                  XValues.DateTime = True
+                  XValues.Name = 'X'
+                  XValues.Order = loAscending
+                  YValues.Name = 'Y'
+                  YValues.Order = loNone
+                end
+              end
+              object Label11: TLabel
+                Position.Y = 836.000000000000000000
+                TextSettings.Trimming = None
+                Text = 'Velocidad de Viento'
+                TabOrder = 4
+              end
+              object Label12: TLabel
+                TextSettings.Trimming = None
+                Text = 'Temperatura'
+                TabOrder = 7
+              end
+              object Label13: TLabel
+                Position.Y = 283.000000000000000000
+                TextSettings.Trimming = None
+                Text = 'Humedad'
+                TabOrder = 6
+              end
+              object Label14: TLabel
+                Position.Y = 566.000000000000000000
+                TextSettings.Trimming = None
+                Text = 'Presi'#243'n atfmosf'#233'rica'
+                TabOrder = 5
+              end
+            end
+            object Panel4: TPanel
+              Position.X = -3.000000000000000000
+              Position.Y = 121.000000000000000000
+              Size.Width = 476.000000000000000000
+              Size.Height = 856.000000000000000000
+              Size.PlatformDefault = False
+              Visible = False
+              TabOrder = 7
+              object Chart5: TChart
+                Position.Y = 25.000000000000000000
+                Foot.Font.StyleExt = {00040000000200000004000000}
+                LeftWall.Dark3D = False
+                LeftWall.Visible = False
+                Legend.Title.Font.StyleExt = {00070000000000000004000000}
+                Legend.Visible = False
+                SubFoot.Font.StyleExt = {00040000000200000004000000}
+                Title.Text.Strings = (
+                  'TChart')
+                Title.Visible = False
+                LeftAxis.AxisValuesFormat = '###ppm'
+                Panning.MouseWheel = pmwNone
+                View3D = False
+                Zoom.Brush.Kind = None
+                Zoom.Pen.Fill.Color = claSilver
+                BevelOuter = bvNone
+                TabOrder = 3
+                Cursor = crIBeam
+                Size.Width = 470.000000000000000000
+                Size.Height = 250.000000000000000000
+                Size.PlatformDefault = False
+                ColorPaletteIndex = 13
+                object AreaSeries4: TAreaSeries
+                  HoverElement = [heCurrent]
+                  AreaChartBrush.BackColor = x00FFFFFF
+                  DrawArea = True
+                  Pointer.InflateMargins = True
+                  Pointer.Style = psRectangle
+                  Pointer.Visible = False
+                  XValues.DateTime = True
+                  XValues.Name = 'X'
+                  XValues.Order = loAscending
+                  YValues.Name = 'Y'
+                  YValues.Order = loNone
+                end
+              end
+              object Chart6: TChart
+                Position.Y = 308.000000000000000000
+                Foot.Font.StyleExt = {00040000000200000004000000}
+                LeftWall.Dark3D = False
+                LeftWall.Visible = False
+                Legend.Title.Font.StyleExt = {00070000000000000004000000}
+                Legend.Visible = False
+                SubFoot.Font.StyleExt = {00040000000200000004000000}
+                Title.Text.Strings = (
+                  'TChart')
+                Title.Visible = False
+                LeftAxis.AxisValuesFormat = '##,#%'
+                Panning.MouseWheel = pmwNone
+                View3D = False
+                Zoom.Brush.Kind = None
+                Zoom.Pen.Fill.Color = claSilver
+                BevelOuter = bvNone
+                TabOrder = 2
+                Cursor = crSizeWE
+                Size.Width = 470.000000000000000000
+                Size.Height = 250.000000000000000000
+                Size.PlatformDefault = False
+                ColorPaletteIndex = 13
+                object AreaSeries5: TAreaSeries
+                  HoverElement = [heCurrent]
+                  AreaChartBrush.Color = claGray
+                  AreaChartBrush.BackColor = x00FFFFFF
+                  DrawArea = True
+                  Pointer.InflateMargins = True
+                  Pointer.Style = psRectangle
+                  Pointer.Visible = False
+                  XValues.DateTime = True
+                  XValues.Name = 'X'
+                  XValues.Order = loAscending
+                  YValues.Name = 'Y'
+                  YValues.Order = loNone
+                end
+              end
+              object Chart7: TChart
+                Position.Y = 591.000000000000000000
+                Foot.Font.StyleExt = {00040000000200000004000000}
+                LeftWall.Dark3D = False
+                LeftWall.Visible = False
+                Legend.Title.Font.StyleExt = {00070000000000000004000000}
+                Legend.Visible = False
+                SubFoot.Font.StyleExt = {00040000000200000004000000}
+                Title.Text.Strings = (
+                  'TChart')
+                Title.Visible = False
+                LeftAxis.AxisValuesFormat = '###%'
+                Panning.MouseWheel = pmwNone
+                View3D = False
+                Zoom.Brush.Kind = None
+                Zoom.Pen.Fill.Color = claSilver
+                BevelOuter = bvNone
+                TabOrder = 1
+                Cursor = crSizeWE
+                Size.Width = 470.000000000000000000
+                Size.Height = 250.000000000000000000
+                Size.PlatformDefault = False
+                ColorPaletteIndex = 13
+                object AreaSeries6: TAreaSeries
+                  HoverElement = [heCurrent]
+                  AreaChartBrush.BackColor = x00FFFFFF
+                  DrawArea = True
+                  Pointer.InflateMargins = True
+                  Pointer.Style = psRectangle
+                  Pointer.Visible = False
+                  XValues.DateTime = True
+                  XValues.Name = 'X'
+                  XValues.Order = loAscending
+                  YValues.Name = 'Y'
+                  YValues.Order = loNone
+                end
+              end
+              object Label15: TLabel
+                TextSettings.Trimming = None
+                Text = 'Ritmo card'#237'aco'
+                TabOrder = 4
+              end
+              object Label16: TLabel
+                Position.Y = 283.000000000000000000
+                Size.Width = 197.000000000000000000
+                Size.Height = 17.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.Trimming = None
+                Text = 'Nivel de Ox'#237'geno en sangre'
+                TabOrder = 6
+              end
+              object Label17: TLabel
+                Position.Y = 566.000000000000000000
+                TextSettings.Trimming = None
+                Text = 'Niveles de Magia'
+                TabOrder = 5
+              end
+            end
+            object eligeTabla: TComboBox
+              Items.Strings = (
+                'Elegir tabla...'
+                'datos'
+                'salud')
+              ItemIndex = 0
+              Position.X = -3.000000000000000000
+              Size.Width = 152.000000000000000000
+              Size.Height = 32.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 9
+              OnChange = seleccionaFecha
+            end
           end
         end
       end
@@ -263,7 +1158,7 @@ object Form1: TForm1
         TextSettings.Trimming = None
         IsSelected = False
         Size.Width = 58.000000000000000000
-        Size.Height = 26.000000000000000000
+        Size.Height = 49.000000000000000000
         Size.PlatformDefault = False
         StyleLookup = ''
         TabOrder = 0
@@ -273,16 +1168,17 @@ object Form1: TForm1
         object Memo1: TMemo
           Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
           DataDetectorTypes = []
-          Anchors = [akLeft, akTop, akRight]
-          Margins.Right = 8.000000000000000000
-          Position.X = 10.000000000000000000
-          Position.Y = 39.000000000000000000
-          Size.Width = 695.000000000000000000
-          Size.Height = 530.000000000000000000
+          Align = Contents
+          Margins.Left = 10.000000000000000000
+          Margins.Top = 39.000000000000000000
+          Margins.Right = 10.000000000000000000
+          Margins.Bottom = 16.000000000000000000
+          Size.Width = 712.000000000000000000
+          Size.Height = 535.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 4
-          Viewport.Width = 691.000000000000000000
-          Viewport.Height = 526.000000000000000000
+          Viewport.Width = 708.000000000000000000
+          Viewport.Height = 531.000000000000000000
         end
         object Label1: TLabel
           StyledSettings = [Family, FontColor]
@@ -302,12 +1198,38 @@ object Form1: TForm1
     end
   end
   object BluetoothLE1: TBluetoothLE
-    Enabled = False
+    Enabled = True
     OnCharacteristicRead = LeeCaracteristica
     OnDiscoverLEDevice = DescubreDispositivoBLE
     OnServicesDiscovered = ServiciosDescubiertosBLE
     OnEndDiscoverDevices = CierraDescubreDispositivoBLE
     Left = 664
-    Top = 24
+    Top = 8
+  end
+  object FDPhysSQLiteDriverLink1: TFDPhysSQLiteDriverLink
+    Left = 560
+    Top = 8
+  end
+  object FDConnection1: TFDConnection
+    Params.Strings = (
+      'LockingMode=Normal'
+      'DriverID=sQLite')
+    Left = 480
+    Top = 8
+  end
+  object FDConnection2: TFDConnection
+    Params.Strings = (
+      'Server=shared16.hostgator.cl'
+      'Database=roysucl_prueba'
+      'User_Name=roysucl_admin'
+      'Password=moteconhuesillo123'
+      'DriverID=MySQL')
+    Left = 296
+    Top = 8
+  end
+  object FDPhysMySQLDriverLink1: TFDPhysMySQLDriverLink
+    VendorLib = 'libmysql.dll'
+    Left = 368
+    Top = 8
   end
 end

@@ -1,0 +1,356 @@
+inherited Form1_NmXhdpiPh: TForm1_NmXhdpiPh
+  ClientHeight = 615
+  ClientWidth = 400
+  DesignerMasterStyle = 3
+  inherited ScrollBox1: TScrollBox
+    Locked = True
+    Size.Width = 400.000000000000000000
+    Size.Height = 615.000000000000000000
+    Viewport.Width = 400.000000000000000000
+    Viewport.Height = 615.000000000000000000
+    inherited TabControl1: TTabControl
+      Padding.Left = 8.000000000000000000
+      Padding.Top = 50.000000000000000000
+      Padding.Right = 8.000000000000000000
+      Size.Width = 400.000000000000000000
+      Size.Height = 615.000000000000000000
+      Sizes = (
+        384s
+        516s
+        384s
+        516s
+        384s
+        516s)
+      inherited ConectarTab: TTabItem
+        Size.Width = 133.000000000000000000
+        ExplicitSize.cx = 68.000000000000000000
+        ExplicitSize.cy = 26.000000000000000000
+        inherited Label4: TLabel
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+        end
+        inherited lDispositivos: TListBox
+          Size.Width = 0.000000000000000000
+          Viewport.Width = 695.000000000000000000
+          Viewport.Height = 174.000000000000000000
+        end
+        inherited Label6: TLabel
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+        end
+        inherited lServicios: TMemo
+          Size.Width = 0.000000000000000000
+          Viewport.Width = 0.000000000000000000
+          Viewport.Height = 177.000000000000000000
+        end
+      end
+      inherited DashboardTab: TTabItem
+        Size.Width = 133.000000000000000000
+        ExplicitSize.cx = 78.000000000000000000
+        ExplicitSize.cy = 26.000000000000000000
+        inherited Layout1: TLayout
+          Align = Client
+          Margins.Left = -1.000000000000000000
+          Size.Width = 385.000000000000000000
+          Size.Height = 516.000000000000000000
+          inherited PresentedScrollBox1: TPresentedScrollBox
+            Locked = True
+            Padding.Bottom = 160.000000000000000000
+            Size.Width = 385.000000000000000000
+            Size.Height = 508.000000000000000000
+            Viewport.Width = 385.000000000000000000
+            Viewport.Height = 508.000000000000000000
+            inherited btnHistorial: TSpeedButton [0]
+              Anchors = [akLeft]
+              Position.X = 330.000000000000000000
+              Position.Y = 14.614141464233400000
+            end
+            inherited Panel1: TPanel [1]
+              Position.Y = 70.000000000000000000
+              Size.Width = 385.000000000000000000
+              Size.Height = 372.000000000000000000
+              inherited chartOxig: TChart
+                Position.X = 7.000000000000000000
+                Position.Y = 221.000000000000000000
+                Foot.Font.StyleExt = {00040000000200000004000000}
+                Legend.Title.Font.StyleExt = {00070000000000000004000000}
+                SubFoot.Font.StyleExt = {00040000000200000004000000}
+                inherited PieSeries1: TPieSeries
+                  OtherSlice.Legend.Title.Font.StyleExt = {00070000000000000004000000}
+                  Data = {
+                    04080000000000000000188840FF04000000436172730000000000A08540FF06
+                    00000050686F6E65730000000000E88040FF060000005461626C657300000000
+                    00608840FF080000004D6F6E69746F72730000000000488E40FF050000004C61
+                    6D70730000000000C06740FF090000004B6579626F6172647300000000002882
+                    40FF0500000042696B65730000000000A08540FF06000000436861697273}
+                end
+              end
+              inherited Label3: TLabel
+                Size.Width = 137.000000000000000000
+                Size.Height = 23.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.Font.StyleExt = {00070000000000000004000000}
+              end
+              inherited lblPPM: TLabel
+                Position.Y = 39.000000000000000000
+                Size.Width = 97.000000000000000000
+                Size.Height = 66.000000000000000000
+                TextSettings.Font.StyleExt = {00070000000000000004000000}
+              end
+              inherited chartPuls: TChart
+                Position.X = 104.000000000000000000
+                Position.Y = 33.000000000000000000
+                Foot.Font.StyleExt = {00040000000200000004000000}
+                Legend.Title.Font.StyleExt = {00070000000000000004000000}
+                SubFoot.Font.StyleExt = {00040000000200000004000000}
+                Size.Width = 264.000000000000000000
+              end
+              inherited chartMagi: TChart
+                Position.X = 215.000000000000000000
+                Position.Y = 221.000000000000000000
+                Foot.Font.StyleExt = {00040000000200000004000000}
+                Legend.Title.Font.StyleExt = {00070000000000000004000000}
+                SubFoot.Font.StyleExt = {00040000000200000004000000}
+                inherited serieMagi: TPieSeries
+                  OtherSlice.Legend.Title.Font.StyleExt = {00070000000000000004000000}
+                  Data = {
+                    04080000000000000000188840FF04000000436172730000000000A08540FF06
+                    00000050686F6E65730000000000E88040FF060000005461626C657300000000
+                    00608840FF080000004D6F6E69746F72730000000000488E40FF050000004C61
+                    6D70730000000000C06740FF090000004B6579626F6172647300000000002882
+                    40FF0500000042696B65730000000000A08540FF06000000436861697273}
+                end
+              end
+              inherited Label7: TLabel
+                Position.X = 23.000000000000000000
+                Position.Y = 202.000000000000000000
+                Size.Width = 137.000000000000000000
+                Size.Height = 23.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.Font.StyleExt = {00070000000000000004000000}
+              end
+              inherited Label8: TLabel
+                Position.X = 224.000000000000000000
+                Position.Y = 201.000000000000000000
+                Size.Width = 129.000000000000000000
+                Size.Height = 23.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.Font.StyleExt = {00070000000000000004000000}
+              end
+              inherited Circle1: TCircle
+                Position.X = 258.000000000000000000
+                Position.Y = 253.000000000000000000
+              end
+              inherited lblMAGI: TLabel
+                Position.X = 231.000000000000000000
+                Position.Y = 226.000000000000000000
+                TextSettings.Font.StyleExt = {00070000000000000004000000}
+              end
+              inherited Circle2: TCircle
+                Position.X = 50.000000000000000000
+                Position.Y = 253.000000000000000000
+              end
+              inherited lblOXY: TLabel
+                Position.X = 23.000000000000000000
+                Position.Y = 226.000000000000000000
+                TextSettings.Font.StyleExt = {00070000000000000004000000}
+              end
+            end
+            inherited Panel2: TPanel [2]
+              Position.X = -7.000000000000000000
+              Position.Y = 450.000000000000000000
+              Size.Width = 385.000000000000000000
+              Size.Height = 1008.000000000000000000
+              inherited Label2: TLabel
+                TextSettings.Font.StyleExt = {00070000000000000004000000}
+              end
+              inherited lblTEM: TLabel
+                TextSettings.Font.StyleExt = {00070000000000000004000000}
+              end
+              inherited chartTemp: TChart
+                Foot.Font.StyleExt = {00040000000200000004000000}
+                Legend.Title.Font.StyleExt = {00070000000000000004000000}
+                SubFoot.Font.StyleExt = {00040000000200000004000000}
+                Size.Width = 377.000000000000000000
+                inherited serieTemp: TAreaSeries
+                  Gradient.Visible = True
+                  AreaBrush = Gradient
+                  AreaChartBrush.Kind = Gradient
+                  AreaChartBrush.Gradient.Visible = True
+                  LinePen.Visible = False
+                end
+              end
+              inherited chartHumy: TChart
+                Position.X = 8.000000000000000000
+                Position.Y = 313.000000000000000000
+                Foot.Font.StyleExt = {00040000000200000004000000}
+                Legend.Title.Font.StyleExt = {00070000000000000004000000}
+                SubFoot.Font.StyleExt = {00040000000200000004000000}
+                Size.Width = 377.000000000000000000
+              end
+              inherited Label5: TLabel
+                Position.X = 8.000000000000000000
+                Position.Y = 240.000000000000000000
+                TextSettings.Font.StyleExt = {00070000000000000004000000}
+              end
+              inherited lblHUM: TLabel
+                Position.X = 8.000000000000000000
+                Position.Y = 265.000000000000000000
+                TextSettings.Font.StyleExt = {00070000000000000004000000}
+              end
+              inherited lblPRE: TLabel
+                Position.X = 8.000000000000000000
+                Position.Y = 753.000000000000000000
+                TextSettings.Font.StyleExt = {00070000000000000004000000}
+              end
+              inherited lblWIN: TLabel
+                Position.X = 8.000000000000000000
+                Position.Y = 497.000000000000000000
+                TextSettings.Font.StyleExt = {00070000000000000004000000}
+              end
+              inherited chartPres: TChart
+                Position.Y = 810.000000000000000000
+                Foot.Font.StyleExt = {00040000000200000004000000}
+                Legend.Title.Font.StyleExt = {00070000000000000004000000}
+                SubFoot.Font.StyleExt = {00040000000200000004000000}
+                Size.Width = 377.000000000000000000
+              end
+              inherited chartWind: TChart
+                Position.X = 8.000000000000000000
+                Position.Y = 554.000000000000000000
+                Foot.Font.StyleExt = {00040000000200000004000000}
+                Legend.Title.Font.StyleExt = {00070000000000000004000000}
+                SubFoot.Font.StyleExt = {00040000000200000004000000}
+                Size.Width = 377.000000000000000000
+              end
+              inherited Label9: TLabel
+                Position.X = 8.000000000000000000
+                Position.Y = 736.000000000000000000
+                TextSettings.Font.StyleExt = {00070000000000000004000000}
+              end
+              inherited Label10: TLabel
+                Position.X = 8.000000000000000000
+                Position.Y = 480.000000000000000000
+                TextSettings.Font.StyleExt = {00070000000000000004000000}
+              end
+            end
+            inherited Label18: TLabel [3]
+              Position.X = 283.000000000000000000
+              Position.Y = -5.000000000000000000
+            end
+          end
+        end
+        inherited MultiView1: TMultiView
+          Scale.Y = 0.000000000000000000
+          Size.Width = 320.000000000000000000
+          Size.Height = 515999.968750000000000000
+          Visible = False
+          inherited VertScrollBox1: TVertScrollBox
+            Position.X = -8.000000000000000000
+            Size.Height = 515983.968750000000000000
+            Viewport.Width = 50.000000000000000000
+            Viewport.Height = 50.000000000000000000
+            inherited Memo2: TMemo
+              StyledSettings = [Family, Size, Style, FontColor, Other]
+              Viewport.Width = 435.000000000000000000
+              Viewport.Height = 73.000000000000000000
+            end
+            inherited Panel3: TPanel
+              inherited Chart1: TChart
+                Foot.Font.StyleExt = {00040000000200000004000000}
+                Legend.Title.Font.StyleExt = {00070000000000000004000000}
+                SubFoot.Font.StyleExt = {00040000000200000004000000}
+                inherited Series1: TAreaSeries
+                  AreaChartBrush.Color = claGray
+                end
+              end
+              inherited Chart2: TChart
+                Foot.Font.StyleExt = {00040000000200000004000000}
+                Legend.Title.Font.StyleExt = {00070000000000000004000000}
+                SubFoot.Font.StyleExt = {00040000000200000004000000}
+                inherited AreaSeries1: TAreaSeries
+                  AreaChartBrush.Color = claGray
+                end
+              end
+              inherited Chart3: TChart
+                Foot.Font.StyleExt = {00040000000200000004000000}
+                Legend.Title.Font.StyleExt = {00070000000000000004000000}
+                SubFoot.Font.StyleExt = {00040000000200000004000000}
+                inherited AreaSeries2: TAreaSeries
+                  AreaChartBrush.Color = claGray
+                end
+              end
+              inherited Chart4: TChart
+                Position.X = -2.000000000000000000
+                Foot.Font.StyleExt = {00040000000200000004000000}
+                Legend.Title.Font.StyleExt = {00070000000000000004000000}
+                SubFoot.Font.StyleExt = {00040000000200000004000000}
+                inherited AreaSeries3: TAreaSeries
+                  AreaChartBrush.Color = claGray
+                end
+              end
+              inherited Label11: TLabel
+                Position.X = 121.000000000000000000
+              end
+              inherited Label12: TLabel
+                Position.Y = 121.000000000000000000
+              end
+              inherited Label13: TLabel
+                Position.X = 335.000000000000000000
+              end
+              inherited Label14: TLabel
+                Position.X = 207.000000000000000000
+              end
+            end
+            inherited Panel4: TPanel
+              inherited Chart5: TChart
+                Foot.Font.StyleExt = {00040000000200000004000000}
+                Legend.Title.Font.StyleExt = {00070000000000000004000000}
+                SubFoot.Font.StyleExt = {00040000000200000004000000}
+                inherited AreaSeries4: TAreaSeries
+                  AreaChartBrush.Color = claGray
+                end
+              end
+              inherited Chart6: TChart
+                Foot.Font.StyleExt = {00040000000200000004000000}
+                Legend.Title.Font.StyleExt = {00070000000000000004000000}
+                SubFoot.Font.StyleExt = {00040000000200000004000000}
+              end
+              inherited Chart7: TChart
+                Foot.Font.StyleExt = {00040000000200000004000000}
+                Legend.Title.Font.StyleExt = {00070000000000000004000000}
+                SubFoot.Font.StyleExt = {00040000000200000004000000}
+                inherited AreaSeries6: TAreaSeries
+                  AreaChartBrush.Color = claGray
+                end
+              end
+              inherited Label15: TLabel
+                Position.X = 40.000000000000000000
+                Position.Y = 541.000000000000000000
+              end
+            end
+            inherited eligeTabla: TComboBox
+              Position.Y = 96.000000000000000000
+            end
+          end
+        end
+      end
+      inherited TestingTab: TTabItem
+        Size.Width = 134.000000000000000000
+        ExplicitSize.cx = 58.000000000000000000
+        ExplicitSize.cy = 26.000000000000000000
+        inherited Memo1: TMemo
+          Padding.Left = 8.000000000000000000
+          Padding.Top = 139.000000000000000000
+          Padding.Right = 8.000000000000000000
+          Padding.Bottom = 8.000000000000000000
+          Size.Width = 364.000000000000000000
+          Size.Height = 461.000000000000000000
+          Viewport.Width = 364.000000000000000000
+          Viewport.Height = 461.000000000000000000
+        end
+        inherited Label1: TLabel
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+        end
+      end
+    end
+  end
+end
