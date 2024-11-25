@@ -13,10 +13,13 @@ uses
   FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf, FireDAC.Stan.Def,
   FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys, FireDAC.Phys.SQLite,
   FireDAC.FMXUI.Wait, Data.DB, FireDAC.Comp.Client, FireDAC.DApt, System.IOUtils,
-  FireDAC.Phys.MySQL, FireDAC.Phys.MySQLDef, FMX.MultiView, FMXTee.Series,
-  FMXTee.Engine, FMXTee.Procs, FMXTee.Chart, System.ImageList, FMX.ImgList,
-  FMX.ListView.Types, FMX.ListView.Appearances, FMX.ListView.Adapters.Base,
-  FMX.ListView, FireDac.Stan.Param;
+  FMX.MultiView, FMXTee.Series, FMXTee.Engine, FMXTee.Procs, FMXTee.Chart,
+  System.ImageList, FMX.ImgList, FMX.ListView.Types, FMX.ListView.Appearances,
+  FMX.ListView.Adapters.Base, FMX.ListView,
+  {$IF DEFINED(WIN32) OR DEFINED(WIN64)}
+  FireDAC.Phys.MySQL, FireDAC.Phys.MySQLDef,
+  {$ENDIF}
+  FireDac.Stan.Param;
 
 type
   BDambiente = record
@@ -60,8 +63,10 @@ type
     Label6: TLabel;
     FDConnection1: TFDConnection;
     FDPhysSQLiteDriverLink1: TFDPhysSQLiteDriverLink;
+    {$IF DEFINED(WIN32) OR DEFINED(WIN64)}
     FDConnection2: TFDConnection;
     FDPhysMySQLDriverLink1: TFDPhysMySQLDriverLink;
+    {$ENDIF}
     btnHistorial: TSpeedButton;
     chartPuls,chartOxig,chartMagi,chartTemp,chartHumy,chartPres,chartWind: TChart;
     seriePuls,serieHumy: TFastLineSeries;
@@ -100,6 +105,7 @@ type
     Label17: TLabel;
     Label18: TLabel;
     agregaDataOnline: TSpeedButton;
+    VertScrollBox2: TVertScrollBox;
     procedure FormShow(Sender: TObject);
     procedure btnEscaneaClick(Sender: TObject);
     procedure btnDetieneEscaneoClick(Sender: TObject);
@@ -120,6 +126,7 @@ type
     procedure seleccionaFecha(Sender: TObject);
     procedure muestraHistorial(Sender: TObject);
     procedure SyncLocalToOnline(Sender: TObject);
+    procedure FDConnection1BeforeConnect(Sender: TObject);
   private const
     LOCATION_PERMISSION = 'android.permission.ACCESS_FINE_LOCATION';
     BLUETOOTH_SCAN_PERMISSION = 'android.permission.BLUETOOTH_SCAN';
@@ -167,9 +174,13 @@ const
   charHumy:      TBluetoothUUID = '{34d7de5a-8364-445d-b58b-8030e8ed7342}';//uuid customizado
   charPres:      TBluetoothUUID = '{dd4a7cde-add5-4055-86da-a45737f88642}';//uuid customizado
   charWind:      TBluetoothUUID = '{a3b08eec-86ce-4b2c-9e31-4c1457a04833}';//uuid customizado
-
+  {$IF DEFINED(WIN32) OR DEFINED(WIN64)}
   ESP32Pame  = '9C9C1FC7043E';//identificador dispositivo BLE
   ESP32Extra = '3C6105138196';//identificador dispositivo BLE
+  {$ELSE}
+  ESP32Pame = '9C:9C:1F:C7:04:3E';//identificador dispositivo BLE
+  ESP32Extra = '3C:61:05:13:81:96';//identificador dispositivo BLE
+  {$ENDIF}
 var
   Form1: TForm1;
 
@@ -181,6 +192,7 @@ uses
 {$R *.fmx}
 {$R *.NmXhdpiPh.fmx ANDROID}
 {$R *.LgXhdpiTb.fmx ANDROID}
+{$R *.Windows.fmx MSWINDOWS}
 
 function BytesToString(const Data: TBytes): string;
 /// Función para convertir bytes a string.
@@ -312,6 +324,7 @@ begin
   begin
     if BluetoothLE1.DiscoveredDevices[i].Identifier = ESP32Pame then
     begin
+      Memo1.Lines.Add('    Dispositivo AMBIENTE encontrado');
       BLEseleccionado := BluetoothLE1.DiscoveredDevices[i];//selecciona 1er dispositivo
       TThread.CreateAnonymousThread(
       procedure
@@ -326,6 +339,7 @@ begin
     end
     else if BluetoothLE1.DiscoveredDevices[i].Identifier = ESP32Extra then
     begin
+      Memo1.Lines.Add('    Dispositivo SALUD encontrado');
       BLE2seleccionado := BluetoothLE1.DiscoveredDevices[i];//selecciona 2do dispositivo
       TThread.CreateAnonymousThread(
       procedure
@@ -888,6 +902,12 @@ begin
   end;
 end;
 
+procedure TForm1.FDConnection1BeforeConnect(Sender: TObject);
+/// Permite que la aplicación reconozca el archivo '.s3db' en Android
+begin
+  FDConnection1.Params.Values['Database'] := TPath.Combine(TPath.GetDocumentsPath, 'PameAppDATA.s3db');
+end;
+
 procedure TForm1.ConectaBD;
 /// Conexión a base de datos.
 begin
@@ -913,6 +933,7 @@ begin
       Memo1.Lines.Add('    BD: Error en conexión, ' + E.Message);
     end;
   end;
+  {$IF DEFINED(WIN32) OR DEFINED(WIN64)}
   // Conexión a la base de datos en línea.
   FDConnection2.DriverName := 'MySQL';
   FDConnection2.Params.Values['Server']    := 'shared16.hostgator.cl';
@@ -930,7 +951,7 @@ begin
       ShowMessage('Error al conectar: '+ E.Message);
     end;
   end;
-
+  {$ENDIF}
 end;
 
 procedure TForm1.GuardaDatosEnvironment;
@@ -1147,7 +1168,7 @@ var
   Temp, Humy, Pres, Wind: Double;
 begin
   Memo1.Lines.Add('> SyncLocalToOnline');
-
+  {$IF DEFINED(WIN32) OR DEFINED(WIN64)}
   LocalQuery := TFDQuery.Create(nil);
   OnlineInsert := TFDQuery.Create(nil);
   try
@@ -1200,6 +1221,10 @@ begin
     LocalQuery.Free;
     OnlineInsert.Free;
   end;
+  {$ELSE}
+  ShowMessage('Funcionalidad no disponible en Android');
+  Memo1.Lines.Add('        Sincronización no disponible en Android');
+  {$ENDIF}
 end;
 
 end.

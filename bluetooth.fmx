@@ -24,7 +24,6 @@ object Form1: TForm1
     Viewport.Height = 655.000000000000000000
     object TabControl1: TTabControl
       Align = Client
-      Locked = True
       Margins.Left = 8.000000000000000000
       Margins.Top = 8.000000000000000000
       Margins.Right = 8.000000000000000000
@@ -33,7 +32,7 @@ object Form1: TForm1
       Size.Height = 639.000000000000000000
       Size.PlatformDefault = False
       TabHeight = 49.000000000000000000
-      TabIndex = 1
+      TabIndex = 0
       TabOrder = 10
       TabPosition = Top
       Sizes = (
@@ -48,7 +47,7 @@ object Form1: TForm1
           item
           end>
         TextSettings.Trimming = None
-        IsSelected = False
+        IsSelected = True
         Size.Width = 68.000000000000000000
         Size.Height = 49.000000000000000000
         Size.PlatformDefault = False
@@ -57,89 +56,94 @@ object Form1: TForm1
         Text = 'Conectar'
         ExplicitSize.cx = 68.000000000000000000
         ExplicitSize.cy = 26.000000000000000000
-        object btnEscanea: TButton
-          Locked = True
-          Position.X = 8.000000000000000000
-          Position.Y = 14.000000000000000000
-          Size.Width = 209.000000000000000000
-          Size.Height = 41.000000000000000000
+        object VertScrollBox2: TVertScrollBox
+          Align = Contents
+          Size.Width = 732.000000000000000000
+          Size.Height = 590.000000000000000000
           Size.PlatformDefault = False
-          TabOrder = 2
-          Text = 'Escanea dispositivos'
-          TextSettings.Trimming = None
-          OnClick = btnEscaneaClick
-        end
-        object btnLee: TButton
-          Locked = True
-          Position.X = 225.000000000000000000
-          Position.Y = 14.000000000000000000
-          Size.Width = 209.000000000000000000
-          Size.Height = 41.000000000000000000
-          Size.PlatformDefault = False
-          TabOrder = 12
-          Text = 'Lee caracter'#237'sticas una vez'
-          TextSettings.Trimming = None
-          OnClick = btnLeeClick
-        end
-        object Label4: TLabel
-          StyledSettings = [Family, FontColor]
-          Locked = True
-          Position.X = 8.000000000000000000
-          Position.Y = 63.000000000000000000
-          Size.Width = 121.000000000000000000
-          Size.Height = 17.000000000000000000
-          Size.PlatformDefault = False
-          TextSettings.Font.Size = 14.000000000000000000
-          TextSettings.Font.StyleExt = {00070000000000000004000000}
-          TextSettings.Trimming = None
-          Text = 'Elegir dispositivo'
-          TabOrder = 5
-        end
-        object lDispositivos: TListBox
-          Anchors = [akLeft, akTop, akRight]
-          Margins.Right = 8.000000000000000000
-          Position.X = 8.000000000000000000
-          Position.Y = 84.000000000000000000
-          Size.Width = 715.000000000000000000
-          Size.Height = 178.000000000000000000
-          Size.PlatformDefault = False
-          TabOrder = 4
-          ShowSizeGrip = True
-          DisableFocusEffect = True
-          DefaultItemStyles.ItemStyle = ''
-          DefaultItemStyles.GroupHeaderStyle = ''
-          DefaultItemStyles.GroupFooterStyle = ''
-          OnItemClick = lDispositivosItemClick
-          Viewport.Width = 711.000000000000000000
-          Viewport.Height = 174.000000000000000000
-        end
-        object Label6: TLabel
-          StyledSettings = [Family, FontColor]
-          Locked = True
-          Position.X = 8.000000000000000000
-          Position.Y = 292.000000000000000000
-          Size.Width = 177.000000000000000000
-          Size.Height = 17.000000000000000000
-          Size.PlatformDefault = False
-          TextSettings.Font.Size = 14.000000000000000000
-          TextSettings.Font.StyleExt = {00070000000000000004000000}
-          TextSettings.Trimming = None
-          Text = 'Log - Listado de servicios'
-          TabOrder = 6
-        end
-        object lServicios: TMemo
-          Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
-          DataDetectorTypes = []
-          ShowSizeGrip = True
-          Anchors = [akLeft, akTop, akRight]
-          Position.X = 8.000000000000000000
-          Position.Y = 317.000000000000000000
-          Size.Width = 715.000000000000000000
-          Size.Height = 177.000000000000000000
-          Size.PlatformDefault = False
-          TabOrder = 3
-          Viewport.Width = 711.000000000000000000
-          Viewport.Height = 173.000000000000000000
+          TabOrder = 7
+          Viewport.Width = 732.000000000000000000
+          Viewport.Height = 590.000000000000000000
+          object btnEscanea: TButton
+            Position.X = 8.000000000000000000
+            Position.Y = 14.000000000000000000
+            Size.Width = 209.000000000000000000
+            Size.Height = 41.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 2
+            Text = 'Escanea dispositivos'
+            TextSettings.Trimming = None
+            OnClick = btnEscaneaClick
+          end
+          object btnLee: TButton
+            Position.X = 225.000000000000000000
+            Position.Y = 14.000000000000000000
+            Size.Width = 209.000000000000000000
+            Size.Height = 41.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 12
+            Text = 'Lee caracter'#237'sticas una vez'
+            TextSettings.Trimming = None
+            OnClick = btnLeeClick
+          end
+          object Label4: TLabel
+            StyledSettings = [Family, FontColor]
+            Position.X = 8.000000000000000000
+            Position.Y = 63.000000000000000000
+            Size.Width = 121.000000000000000000
+            Size.Height = 17.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.Font.Size = 14.000000000000000000
+            TextSettings.Font.StyleExt = {00070000000000000004000000}
+            TextSettings.Trimming = None
+            Text = 'Elegir dispositivo'
+            TabOrder = 5
+          end
+          object Label6: TLabel
+            StyledSettings = [Family, FontColor]
+            Position.X = 8.000000000000000000
+            Position.Y = 292.000000000000000000
+            Size.Width = 177.000000000000000000
+            Size.Height = 17.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.Font.Size = 14.000000000000000000
+            TextSettings.Font.StyleExt = {00070000000000000004000000}
+            TextSettings.Trimming = None
+            Text = 'Log - Listado de servicios'
+            TabOrder = 6
+          end
+          object lDispositivos: TListBox
+            Anchors = [akLeft, akTop, akRight]
+            Margins.Right = 8.000000000000000000
+            Position.X = 8.000000000000000000
+            Position.Y = 84.000000000000000000
+            Size.Width = 2079.000000000000000000
+            Size.Height = 178.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 4
+            ShowSizeGrip = True
+            DisableFocusEffect = True
+            DefaultItemStyles.ItemStyle = ''
+            DefaultItemStyles.GroupHeaderStyle = ''
+            DefaultItemStyles.GroupFooterStyle = ''
+            OnItemClick = lDispositivosItemClick
+            Viewport.Width = 2075.000000000000000000
+            Viewport.Height = 174.000000000000000000
+          end
+          object lServicios: TMemo
+            Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+            DataDetectorTypes = []
+            ShowSizeGrip = True
+            Anchors = [akLeft, akTop, akRight]
+            Position.X = 8.000000000000000000
+            Position.Y = 317.000000000000000000
+            Size.Width = 2079.000000000000000000
+            Size.Height = 177.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 3
+            Viewport.Width = 2075.000000000000000000
+            Viewport.Height = 173.000000000000000000
+          end
         end
       end
       object DashboardTab: TTabItem
@@ -147,7 +151,7 @@ object Form1: TForm1
           item
           end>
         TextSettings.Trimming = None
-        IsSelected = True
+        IsSelected = False
         Size.Width = 78.000000000000000000
         Size.Height = 49.000000000000000000
         Size.PlatformDefault = False
@@ -173,7 +177,6 @@ object Form1: TForm1
             Viewport.Width = 716.000000000000000000
             Viewport.Height = 574.000000000000000000
             object Label18: TLabel
-              Locked = True
               Position.X = 640.000000000000000000
               Size.Width = 72.000000000000000000
               Size.Height = 17.000000000000000000
@@ -184,7 +187,6 @@ object Form1: TForm1
               TabOrder = 17
             end
             object btnHistorial: TSpeedButton
-              Locked = True
               Position.X = 665.000000000000000000
               Position.Y = 6.000000000000000000
               Size.Width = 48.000000000000000000
@@ -195,7 +197,6 @@ object Form1: TForm1
               TextSettings.Trimming = None
             end
             object Panel1: TPanel
-              Locked = True
               Position.X = 24.000000000000000000
               Position.Y = 21.000000000000000000
               Size.Width = 624.000000000000000000
@@ -452,7 +453,6 @@ object Form1: TForm1
               end
             end
             object Panel2: TPanel
-              Locked = True
               Position.X = 24.000000000000000000
               Position.Y = 361.000000000000000000
               Size.Width = 624.000000000000000000
@@ -762,10 +762,10 @@ object Form1: TForm1
           Size.Width = 510.000000000000000000
           Size.Height = 590.000000000000000000
           Size.PlatformDefault = False
+          Visible = False
           TabOrder = 14
           object VertScrollBox1: TVertScrollBox
             Align = Vertical
-            Locked = True
             Size.Width = 496.000000000000000000
             Size.Height = 574.000000000000000000
             Size.PlatformDefault = False
@@ -848,6 +848,7 @@ object Form1: TForm1
                 ColorPaletteIndex = 13
                 object Series1: TAreaSeries
                   HoverElement = [heCurrent]
+                  AreaChartBrush.Color = claGray
                   AreaChartBrush.BackColor = x00FFFFFF
                   DrawArea = True
                   Pointer.InflateMargins = True
@@ -885,6 +886,7 @@ object Form1: TForm1
                 ColorPaletteIndex = 13
                 object AreaSeries1: TAreaSeries
                   HoverElement = [heCurrent]
+                  AreaChartBrush.Color = claGray
                   AreaChartBrush.BackColor = x00FFFFFF
                   DrawArea = True
                   Pointer.InflateMargins = True
@@ -922,6 +924,7 @@ object Form1: TForm1
                 ColorPaletteIndex = 13
                 object AreaSeries2: TAreaSeries
                   HoverElement = [heCurrent]
+                  AreaChartBrush.Color = claGray
                   AreaChartBrush.BackColor = x00FFFFFF
                   DrawArea = True
                   Pointer.InflateMargins = True
@@ -959,6 +962,7 @@ object Form1: TForm1
                 ColorPaletteIndex = 13
                 object AreaSeries3: TAreaSeries
                   HoverElement = [heCurrent]
+                  AreaChartBrush.Color = claGray
                   AreaChartBrush.BackColor = x00FFFFFF
                   DrawArea = True
                   Pointer.InflateMargins = True
@@ -1028,6 +1032,7 @@ object Form1: TForm1
                 ColorPaletteIndex = 13
                 object AreaSeries4: TAreaSeries
                   HoverElement = [heCurrent]
+                  AreaChartBrush.Color = claGray
                   AreaChartBrush.BackColor = x00FFFFFF
                   DrawArea = True
                   Pointer.InflateMargins = True
@@ -1103,6 +1108,7 @@ object Form1: TForm1
                 ColorPaletteIndex = 13
                 object AreaSeries6: TAreaSeries
                   HoverElement = [heCurrent]
+                  AreaChartBrush.Color = claGray
                   AreaChartBrush.BackColor = x00FFFFFF
                   DrawArea = True
                   Pointer.InflateMargins = True
@@ -1227,21 +1233,6 @@ object Form1: TForm1
       'LockingMode=Normal'
       'DriverID=sQLite')
     Left = 480
-    Top = 8
-  end
-  object FDConnection2: TFDConnection
-    Params.Strings = (
-      'Server=shared16.hostgator.cl'
-      'Database=roysucl_prueba'
-      'User_Name=roysucl_admin'
-      'Password=moteconhuesillo123'
-      'DriverID=MySQL')
-    Left = 296
-    Top = 8
-  end
-  object FDPhysMySQLDriverLink1: TFDPhysMySQLDriverLink
-    VendorLib = 'libmysql.dll'
-    Left = 368
     Top = 8
   end
 end

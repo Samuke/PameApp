@@ -1,34 +1,22 @@
-inherited Form1_LgXhdpiTb: TForm1_LgXhdpiTb
-  ClientHeight = 829
-  ClientWidth = 480
+inherited Form1_Windows: TForm1_Windows
   DesignerMasterStyle = 0
   inherited ScrollBox1: TScrollBox
-    Size.Width = 480.000000000000000000
-    Size.Height = 829.000000000000000000
-    Viewport.Width = 480.000000000000000000
-    Viewport.Height = 829.000000000000000000
+    Viewport.Width = 748.000000000000000000
+    Viewport.Height = 655.000000000000000000
     inherited TabControl1: TTabControl
-      Padding.Left = 8.000000000000000000
-      Padding.Top = 50.000000000000000000
-      Padding.Right = 8.000000000000000000
-      Size.Width = 464.000000000000000000
-      Size.Height = 813.000000000000000000
       Sizes = (
-        448s
-        714s
-        448s
-        714s
-        448s
-        714s)
+        732s
+        590s
+        732s
+        590s
+        732s
+        590s)
       inherited ConectarTab: TTabItem
-        Size.Width = 69.000000000000000000
         ExplicitSize.cx = 68.000000000000000000
         ExplicitSize.cy = 26.000000000000000000
         inherited VertScrollBox2: TVertScrollBox
-          Size.Width = 448.000000000000000000
-          Size.Height = 714.000000000000000000
-          Viewport.Width = 448.000000000000000000
-          Viewport.Height = 714.000000000000000000
+          Viewport.Width = 732.000000000000000000
+          Viewport.Height = 590.000000000000000000
           inherited Label4: TLabel
             TextSettings.Font.StyleExt = {00070000000000000004000000}
           end
@@ -36,39 +24,24 @@ inherited Form1_LgXhdpiTb: TForm1_LgXhdpiTb
             TextSettings.Font.StyleExt = {00070000000000000004000000}
           end
           inherited lDispositivos: TListBox
-            Size.Width = 448.000000000000000000
-            Viewport.Width = 448.000000000000000000
-            Viewport.Height = 178.000000000000000000
+            Size.Width = 2096.000000000000000000
+            Viewport.Width = 2092.000000000000000000
+            Viewport.Height = 174.000000000000000000
           end
           inherited lServicios: TMemo
-            Size.Width = 448.000000000000000000
-            Viewport.Width = 448.000000000000000000
+            Size.Width = 2096.000000000000000000
+            Viewport.Width = 2096.000000000000000000
             Viewport.Height = 177.000000000000000000
           end
         end
       end
       inherited DashboardTab: TTabItem
-        Size.Width = 79.000000000000000000
         ExplicitSize.cx = 78.000000000000000000
         ExplicitSize.cy = 26.000000000000000000
         inherited Layout1: TLayout
-          Margins.Left = -1.000000000000000000
-          Margins.Top = 39.000000000000000000
-          Size.Width = 449.000000000000000000
-          Size.Height = 675.000000000000000000
           inherited PresentedScrollBox1: TPresentedScrollBox
-            Padding.Bottom = 160.000000000000000000
-            Size.Width = 449.000000000000000000
-            Size.Height = 659.000000000000000000
-            Viewport.Width = 449.000000000000000000
-            Viewport.Height = 659.000000000000000000
-            inherited Label18: TLabel
-              Position.Y = 29.000000000000000000
-            end
-            inherited btnHistorial: TSpeedButton
-              Anchors = [akLeft]
-              Position.Y = 68752.734375000000000000
-            end
+            Viewport.Width = 732.000000000000000000
+            Viewport.Height = 574.000000000000000000
             inherited Panel1: TPanel
               inherited chartOxig: TChart
                 Foot.Font.StyleExt = {00040000000200000004000000}
@@ -76,12 +49,6 @@ inherited Form1_LgXhdpiTb: TForm1_LgXhdpiTb
                 SubFoot.Font.StyleExt = {00040000000200000004000000}
                 inherited PieSeries1: TPieSeries
                   OtherSlice.Legend.Title.Font.StyleExt = {00070000000000000004000000}
-                  Data = {
-                    04080000000000000000188840FF04000000436172730000000000A08540FF06
-                    00000050686F6E65730000000000E88040FF060000005461626C657300000000
-                    00608840FF080000004D6F6E69746F72730000000000488E40FF050000004C61
-                    6D70730000000000C06740FF090000004B6579626F6172647300000000002882
-                    40FF0500000042696B65730000000000A08540FF06000000436861697273}
                 end
               end
               inherited Label3: TLabel
@@ -101,12 +68,6 @@ inherited Form1_LgXhdpiTb: TForm1_LgXhdpiTb
                 SubFoot.Font.StyleExt = {00040000000200000004000000}
                 inherited serieMagi: TPieSeries
                   OtherSlice.Legend.Title.Font.StyleExt = {00070000000000000004000000}
-                  Data = {
-                    04080000000000000000188840FF04000000436172730000000000A08540FF06
-                    00000050686F6E65730000000000E88040FF060000005461626C657300000000
-                    00608840FF080000004D6F6E69746F72730000000000488E40FF050000004C61
-                    6D70730000000000C06740FF090000004B6579626F6172647300000000002882
-                    40FF0500000042696B65730000000000A08540FF06000000436861697273}
                 end
               end
               inherited Label7: TLabel
@@ -133,13 +94,6 @@ inherited Form1_LgXhdpiTb: TForm1_LgXhdpiTb
                 Foot.Font.StyleExt = {00040000000200000004000000}
                 Legend.Title.Font.StyleExt = {00070000000000000004000000}
                 SubFoot.Font.StyleExt = {00040000000200000004000000}
-                inherited serieTemp: TAreaSeries
-                  Gradient.Visible = True
-                  AreaBrush = Gradient
-                  AreaChartBrush.Kind = Gradient
-                  AreaChartBrush.Gradient.Visible = True
-                  LinePen.Visible = False
-                end
               end
               inherited chartHumy: TChart
                 Foot.Font.StyleExt = {00040000000200000004000000}
@@ -178,15 +132,11 @@ inherited Form1_LgXhdpiTb: TForm1_LgXhdpiTb
           end
         end
         inherited MultiView1: TMultiView
-          Scale.Y = 0.000000000000000000
-          Size.Height = 713999.937500000000000000
+          Size.Width = 24.000000000000000000
           inherited VertScrollBox1: TVertScrollBox
-            Position.X = -8.000000000000000000
-            Size.Height = 713983.937500000000000000
-            Viewport.Width = 50.000000000000000000
-            Viewport.Height = 50.000000000000000000
+            Viewport.Width = 496.000000000000000000
+            Viewport.Height = 574.000000000000000000
             inherited Memo2: TMemo
-              StyledSettings = [Family, Size, Style, FontColor, Other]
               Viewport.Width = 435.000000000000000000
               Viewport.Height = 73.000000000000000000
             end
@@ -207,22 +157,9 @@ inherited Form1_LgXhdpiTb: TForm1_LgXhdpiTb
                 SubFoot.Font.StyleExt = {00040000000200000004000000}
               end
               inherited Chart4: TChart
-                Position.X = -2.000000000000000000
                 Foot.Font.StyleExt = {00040000000200000004000000}
                 Legend.Title.Font.StyleExt = {00070000000000000004000000}
                 SubFoot.Font.StyleExt = {00040000000200000004000000}
-              end
-              inherited Label11: TLabel
-                Position.X = 121.000000000000000000
-              end
-              inherited Label12: TLabel
-                Position.Y = 121.000000000000000000
-              end
-              inherited Label13: TLabel
-                Position.X = 335.000000000000000000
-              end
-              inherited Label14: TLabel
-                Position.X = 207.000000000000000000
               end
             end
             inherited Panel4: TPanel
@@ -241,40 +178,36 @@ inherited Form1_LgXhdpiTb: TForm1_LgXhdpiTb
                 Legend.Title.Font.StyleExt = {00070000000000000004000000}
                 SubFoot.Font.StyleExt = {00040000000200000004000000}
               end
-              inherited Label15: TLabel
-                Position.X = 40.000000000000000000
-                Position.Y = 541.000000000000000000
-              end
-            end
-            inherited eligeTabla: TComboBox
-              Position.Y = 96.000000000000000000
-            end
-            inherited agregaDataOnline: TSpeedButton
-              Position.Y = 8.000000000000000000
-              Size.Width = 48.000000000000000000
-              Size.Height = 48.000000000000000000
             end
           end
         end
       end
       inherited TestingTab: TTabItem
-        Size.Width = 56.000000000000000000
         ExplicitSize.cx = 58.000000000000000000
         ExplicitSize.cy = 26.000000000000000000
         inherited Memo1: TMemo
-          Padding.Left = 8.000000000000000000
-          Padding.Top = 139.000000000000000000
-          Padding.Right = 8.000000000000000000
-          Padding.Bottom = 8.000000000000000000
-          Size.Width = 428.000000000000000000
-          Size.Height = 659.000000000000000000
-          Viewport.Width = 428.000000000000000000
-          Viewport.Height = 659.000000000000000000
+          Viewport.Width = 712.000000000000000000
+          Viewport.Height = 535.000000000000000000
         end
         inherited Label1: TLabel
           TextSettings.Font.StyleExt = {00070000000000000004000000}
         end
       end
     end
+  end
+  object FDConnection2: TFDConnection
+    Params.Strings = (
+      'Server=shared16.hostgator.cl'
+      'Database=roysucl_prueba'
+      'User_Name=roysucl_admin'
+      'Password=moteconhuesillo123'
+      'DriverID=MySQL')
+    Left = 296
+    Top = 8
+  end
+  object FDPhysMySQLDriverLink1: TFDPhysMySQLDriverLink
+    VendorLib = 'libmysql.dll'
+    Left = 368
+    Top = 8
   end
 end
